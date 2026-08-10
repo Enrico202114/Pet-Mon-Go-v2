@@ -1,0 +1,47 @@
+.footer {
+    display: flex;
+    justify-content: space-between;
+
+    padding: 50px 10%;
+
+    background-color: #263b1d;
+
+    color: white;
+}
+
+.footer-logo {
+    width: 35%;
+}
+
+.footer-logo h2 {
+    margin-bottom: 15px;
+}
+
+.footer-logo p {
+    line-height: 1.5;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.footer-links h3,
+.footer-contato h3 {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #d9e2d5;
+}
+
+.footer-contato p {
+    margin-bottom: 10px;
+}

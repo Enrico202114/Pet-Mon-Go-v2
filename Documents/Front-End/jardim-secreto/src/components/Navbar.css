@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+
+    padding: 18px 60px;
+    background-color: #4A5D23;
+}
+
+/* Primeira área */
+.logo {
+    flex: 1;
+
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+/* Segunda área */
+.menu {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+
+    list-style: none;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+/* Terceira área */
+.icons {
+    flex: 1;
+
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.icons button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}

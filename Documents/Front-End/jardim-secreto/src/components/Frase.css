@@ -1,0 +1,21 @@
+.frase {
+    padding: 80px 20px;
+
+    text-align: center;
+
+    background-color: #8daa81;
+
+    color: white;
+}
+
+.frase h2 {
+    max-width: 800px;
+
+    margin: 0 auto 20px;
+
+    font-size: 2rem;
+}
+
+.frase p {
+    font-size: 1.1rem;
+}
