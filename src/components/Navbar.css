@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(90deg, #839fc7, #b5c5df, #dce7f7, #b5c5df, #839fc7);
+    background: linear-gradient(180deg, #2c2d32, #11dafe, #42dcf8);
 }
 
 .navbar {
