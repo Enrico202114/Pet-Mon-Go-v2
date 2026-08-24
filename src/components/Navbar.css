@@ -2,14 +2,14 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(180deg, #2c2d32, #11dafe, #42dcf8);
+    
 }
 
 .navbar {
     width: 90%;
     max-width: 1400px;
-    height: 95px;
-    margin: 20px auto;
+    height: 60px;
+    margin: 5px auto;
     background: #ffffff;
     border-radius: 10px;
     display: flex;
@@ -20,7 +20,7 @@ body {
 }
 
 .navbar-logo img {
-    width: 90px;
+    width: 60px;
     cursor: pointer;
 }
 
@@ -51,7 +51,7 @@ body {
     border: none;
     background: #f59048;
     color: white;
-    padding: 14px 24px;
+    padding: 10px 20px;
     border-radius: 15px;
     cursor: pointer;
     font-size: 16px;
