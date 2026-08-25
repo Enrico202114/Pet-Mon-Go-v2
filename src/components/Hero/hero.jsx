@@ -1,54 +1,90 @@
 import "./hero.css";
-import { FaPaw } from "react-icons/fa";
+import {
+    FaPaw,
+    FaSyringe,
+    FaBowlFood,
+    FaDog,
+    FaPills
+} from "react-icons/fa6";
 
 function Hero() {
     return (
-        <section className="hero">
+        <>
+            <section className="hero">
 
-            <div className="hero-background"></div>
+                <div className="hero-content">
 
-            <div className="hero-overlay"></div>
+                    <div className="hero-text">
 
-            <div className="hero-content">
+                        <h1>
+                            Organize os
+                            <br />
+                            cuidados do seu
+                            <br />
+                            pet de forma <span>fácil</span>
+                            <br />
+                            e <span>prático!</span>
+                        </h1>
 
-                <div className="hero-text">
+                        <p>
+                            Organize os cuidados do seu pet e nunca
+                            <br />
+                            mais esqueça de tarefas importantes.
+                        </p>
 
-                    <h1>
-                        Organize os
-                        <br />
-                        cuidados do seu
-                        <br />
-                        pet de forma <span>fácil</span>
-                        <br />
-                        e <span>prático!</span>
-                    </h1>
+                        <div className="hero-buttons">
 
-                    <p>
-                        Organize os cuidados do seu pet e nunca
-                        <br />
-                        mais esqueça de tarefas importantes.
-                    </p>
+                            <button className="btn-start">
+                                <FaPaw />
+                                <span>Começar agora</span>
+                            </button>
+
+                            <button className="btn-more">
+                                Saiba mais
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
-                <div className="hero-buttons">
+                <div className="hero-wave"></div>
 
-                    <button className="btn-start">
-                        <FaPaw />
-                        <span>Começar agora</span>
-                    </button>
+            </section>
 
-                    <button className="btn-more">
-                        Saiba mais
-                    </button>
+            <section className="care-section">
+
+                <h2>
+                    Você já esqueceu algum cuidado importante com seu pet?
+                </h2>
+
+                <div className="care-cards">
+
+                    <div className="care-card">
+                        <FaSyringe />
+                        <span>Vacinas</span>
+                    </div>
+
+                    <div className="care-card">
+                        <FaBowlFood />
+                        <span>Alimentação</span>
+                    </div>
+
+                    <div className="care-card">
+                        <FaDog />
+                        <span>Passeios</span>
+                    </div>
+
+                    <div className="care-card">
+                        <FaPills />
+                        <span>Medicação</span>
+                    </div>
 
                 </div>
 
-            </div>
-
-            <div className="hero-wave"></div>
-
-        </section>
+            </section>
+        </>
     );
 }
 
