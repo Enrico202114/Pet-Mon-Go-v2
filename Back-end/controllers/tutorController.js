@@ -1,70 +1,142 @@
-const tutores = require('../models/tutor');
+import { prisma } from "../lib/prisma.js";
 
-function listarTutores(req, res) {
-    res.json(tutores);
-}
+async function listarTutores(req, res) {
+    try {
+        const tutores = await prisma.tutor.findMany();
 
-function buscarTutor(req, res) {
-    const id = Number(req.params.id);
-    const tutor = tutores.find(function (tutor) {
-        return tutor.id === id;
-    });
+        res.json(tutores);
+    } catch (erro) {
+        console.error(erro);
 
-    if (!tutor) {
-        return res.status(404).json({
-            message: 'Tutor não encontrado'
+        res.status(500).json({
+            message: "Erro ao listar tutores"
         });
     }
-    res.json(tutor);
 }
 
-function criarTutor(req, res) {
-    const novoTutor = {
-        id: tutores.length + 1,
-        nome: req.body.nome
-    };
+async function buscarTutor(req, res) {
+    try {
+        const id = Number(req.params.id);
 
-    tutores.push(novoTutor);
-    res.status(201).json(novoTutor);
-}
+        const tutor = await prisma.tutor.findUnique({
+            where: {
+                idtutor: id
+            }
+        });
 
-function atualizarTutor(req, res) {
-    const id = Number(req.params.id);
-    const tutor = tutores.find(function (tutor) {
-        return tutor.id === id;
-    });
+        if (!tutor) {
+            return res.status(404).json({
+                message: "Tutor não encontrado"
+            });
+        }
 
-    if (!tutor) {
-        return res.status(404).json({
-            message: 'Tutor não encontrado'
+        res.json(tutor);
+    } catch (erro) {
+        console.error(erro);
+
+        res.status(500).json({
+            message: "Erro ao buscar tutor"
         });
     }
-
-    tutor.nome = req.body.nome;
-    res.json(tutor);
 }
 
-function removerTutor(req, res) {
-    const id = Number(req.params.id);
-    const indice = tutores.findIndex(function (tutor) {
-        return tutor.id === id;
-    });
+async function criarTutor(req, res) {
+    try {
+        const { nometutor, emailtutor, senhatutor } = req.body;
 
-    if (indice === -1) {
-        return res.status(404).json({
-            message: 'Tutor não encontrado'
+        const novoTutor = await prisma.tutor.create({
+            data: {
+                nometutor,
+                emailtutor,
+                senhatutor
+            }
+        });
+
+        res.status(201).json(novoTutor);
+    } catch (erro) {
+        console.error(erro);
+
+        res.status(500).json({
+            message: "Erro ao criar tutor"
         });
     }
-
-    const tutorRemovido = tutores.splice(indice, 1);
-
-    res.json({
-        message: 'Tutor removido com sucesso',
-        tutor: tutorRemovido[0]
-    });
 }
 
-module.exports = {
+async function atualizarTutor(req, res) {
+    try {
+        const id = Number(req.params.id);
+
+        const { nometutor, emailtutor, senhatutor } = req.body;
+
+        const tutor = await prisma.tutor.findUnique({
+            where: {
+                idtutor: id
+            }
+        });
+
+        if (!tutor) {
+            return res.status(404).json({
+                message: "Tutor não encontrado"
+            });
+        }
+
+        const tutorAtualizado = await prisma.tutor.update({
+            where: {
+                idtutor: id
+            },
+            data: {
+                nometutor,
+                emailtutor,
+                senhatutor
+            }
+        });
+
+        res.json(tutorAtualizado);
+    } catch (erro) {
+        console.error(erro);
+
+        res.status(500).json({
+            message: "Erro ao atualizar tutor"
+        });
+    }
+}
+
+async function removerTutor(req, res) {
+    try {
+        const id = Number(req.params.id);
+
+        const tutor = await prisma.tutor.findUnique({
+            where: {
+                idtutor: id
+            }
+        });
+
+        if (!tutor) {
+            return res.status(404).json({
+                message: "Tutor não encontrado"
+            });
+        }
+
+        const tutorRemovido = await prisma.tutor.delete({
+            where: {
+                idtutor: id
+            }
+        });
+
+        res.json({
+            message: "Tutor removido com sucesso",
+            tutor: tutorRemovido
+        });
+    } catch (erro) {
+        console.error(erro);
+
+        res.status(500).json({
+            message: "Erro ao remover tutor"
+        });
+    }
+}
+
+export {
     listarTutores,
     buscarTutor,
     criarTutor,

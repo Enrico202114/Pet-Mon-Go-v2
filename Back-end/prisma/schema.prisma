@@ -1,0 +1,73 @@
+  generator client {
+    provider = "prisma-client"
+    output   = "../generated/prisma"
+    importFileExtension = "js"
+  }
+
+  datasource db {
+    provider = "postgresql"
+  }
+
+  model alimentacao {
+    idalimentacao         Int     @id @default(autoincrement())
+    idpet                 Int     @unique
+    tipoalimentacao       String  @db.VarChar
+    quantidadealimentacao Decimal @db.Decimal
+    unidadequantidade     String  @db.VarChar
+    pet                   pet     @relation(fields: [idpet], references: [idpet], onDelete: NoAction, onUpdate: NoAction)
+  }
+
+  model familia {
+    idfamilia        Int      @id @default(autoincrement())
+    nomefamilia      String   @db.VarChar
+    sobrenomefamilia String   @db.VarChar
+    datacriacao      DateTime @unique @db.Date
+  }
+
+  model medicacao {
+    idmedicacao           Int      @id @default(autoincrement())
+    idpet                 Int      @unique
+    nomemedicacao         String   @db.VarChar
+    dosagemmedicamento    Decimal  @db.Decimal
+    frequenciamedicamento Int
+    tipofrequencia        String   @db.VarChar
+    duracaodias           DateTime @db.Date
+    tipoduracao           String   @db.VarChar
+    pet                   pet      @relation(fields: [idpet], references: [idpet], onDelete: NoAction, onUpdate: NoAction)
+  }
+
+  model pet {
+    idpet       Int          @id @default(autoincrement())
+    nomepet     String       @db.VarChar
+    especiespet String       @unique @db.VarChar
+    racapet     String       @db.VarChar
+    datanascpet DateTime     @unique @db.Date
+    pesopet     Decimal      @db.Decimal
+    alimentacao alimentacao?
+    medicacao   medicacao?
+    vacina      vacina?
+  }
+
+  model tutor {
+    idtutor    Int         @id @default(autoincrement())
+    nometutor  String      @db.VarChar
+    emailtutor String      @unique @db.VarChar
+    senhatutor String      @db.VarChar
+    tutorchefe tutorchefe?
+  }
+
+  model tutorchefe {
+    idtutorchefe Int   @id @default(autoincrement())
+    idtutor      Int   @unique @default(autoincrement())
+    tutor        tutor @relation(fields: [idtutor], references: [idtutor], onDelete: NoAction, onUpdate: NoAction)
+  }
+
+  model vacina {
+    idvacina     Int      @id @default(autoincrement())
+    idpet        Int      @unique
+    nomevacina   String   @db.VarChar
+    lotevacina   String   @db.VarChar
+    dataalicacao DateTime @db.Date
+    proximadose  DateTime @db.Date
+    pet          pet      @relation(fields: [idpet], references: [idpet], onDelete: NoAction, onUpdate: NoAction)
+  }

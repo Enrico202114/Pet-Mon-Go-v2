@@ -1,12 +1,19 @@
-const express = require('express');
+import express from "express";
+
+import {
+    listarTutores,
+    buscarTutor,
+    criarTutor,
+    atualizarTutor,
+    removerTutor
+} from "../controllers/tutorController.js";
+
 const router = express.Router();
 
-const tutorController = require('../controllers/tutorController');
+router.get("/", listarTutores);
+router.get("/:id", buscarTutor);
+router.post("/", criarTutor);
+router.put("/:id", atualizarTutor);
+router.delete("/:id", removerTutor);
 
-router.get('/', tutorController.listarTutores);
-router.get('/:id', tutorController.buscarTutor);
-router.post('/', tutorController.criarTutor);
-router.put('/:id', tutorController.atualizarTutor);
-router.delete('/:id', tutorController.removerTutor);
-
-module.exports = router;
+export default router;
