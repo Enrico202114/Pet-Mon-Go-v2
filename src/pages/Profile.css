@@ -1,0 +1,1122 @@
+/* ==========================================
+   PÁGINA
+========================================== */
+
+.profile-page {
+    min-height: 100vh;
+    width: 100%;
+
+    background: #f3f6fa;
+
+    padding: 35px 25px 50px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   CONTAINER
+========================================== */
+
+.profile-container {
+    width: 100%;
+    max-width: 950px;
+
+    margin: 0 auto;
+}
+
+
+/* ==========================================
+   TOPO
+========================================== */
+
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+    margin-bottom: 25px;
+}
+
+.profile-top h1 {
+    margin: 0;
+
+    color: #123b70;
+
+    font-size: 28px;
+}
+
+
+/* ==========================================
+   BOTÃO VOLTAR
+========================================== */
+
+.profile-back {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    border: 2px solid transparent;
+    background: transparent;
+
+    color: #123b70;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    padding: 9px 13px;
+
+    border-radius: 10px;
+
+    transition: all 0.25s ease;
+}
+
+.profile-back:hover {
+    background: #e7f0ff;
+
+    border-color: #d5e5ff;
+
+    transform: translateX(-3px);
+}
+
+
+/* ==========================================
+   CARTÃO PRINCIPAL
+========================================== */
+
+.profile-card {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 30px;
+
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.07);
+
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================
+   PARTE PRINCIPAL
+========================================== */
+
+.profile-main {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+}
+
+
+/* ==========================================
+   AVATAR
+========================================== */
+
+.profile-avatar {
+    width: 125px;
+    height: 125px;
+
+    border-radius: 50%;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
+
+    position: relative;
+}
+
+
+/* ==========================================
+   IMAGEM DO PERFIL
+========================================== */
+
+.profile-avatar-image {
+    width: 125px;
+    height: 125px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+    object-position: center;
+
+    display: block;
+}
+
+
+/* ==========================================
+   AVATAR PADRÃO
+========================================== */
+
+.profile-avatar-icon {
+    width: 125px;
+    height: 125px;
+
+    border-radius: 50%;
+
+    background: #e7f0ff;
+
+    border: 5px solid #d5e5ff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #4b8df8;
+
+    font-size: 55px;
+
+    box-sizing: border-box;
+}
+
+
+/* ==========================================
+   BOTÃO DA CÂMERA SOBRE A FOTO
+========================================== */
+
+.avatar-edit {
+    position: absolute;
+
+    right: 0;
+    bottom: 3px;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    border: 3px solid white;
+
+    background: #4b8df8;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+    transition: all 0.25s ease;
+}
+
+.avatar-edit:hover {
+    background: #367be8;
+
+    transform: scale(1.08);
+}
+
+
+/* ==========================================
+   IDENTIDADE
+========================================== */
+
+.profile-identity {
+    flex: 1;
+}
+
+.profile-identity h2 {
+    margin: 0 0 5px;
+
+    color: #123b70;
+
+    font-size: 30px;
+}
+
+.profile-identity p {
+    margin: 0 0 8px;
+
+    color: #777;
+
+    font-size: 16px;
+}
+
+.profile-identity span {
+    color: #555;
+
+    font-size: 15px;
+}
+
+
+/* ==========================================
+   BOTÃO EDITAR PERFIL
+========================================== */
+
+.profile-edit-btn {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 12px 19px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #4b8df8;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow: 0 4px 10px rgba(75, 141, 248, 0.18);
+}
+
+.profile-edit-btn:hover {
+    background: #367be8;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 16px rgba(75, 141, 248, 0.25);
+}
+
+.profile-edit-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ==========================================
+   BOTÃO SALVAR PERFIL
+========================================== */
+
+.profile-save-btn {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 12px 19px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #4b8df8;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow: 0 4px 10px rgba(75, 141, 248, 0.18);
+}
+
+.profile-save-btn:hover {
+    background: #367be8;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 16px rgba(75, 141, 248, 0.25);
+}
+
+.profile-save-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ==========================================
+   BOTÃO ALTERAR FOTO
+========================================== */
+
+.photo-change-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    width: auto;
+    height: auto;
+
+    padding: 10px 16px;
+
+    margin: 0;
+
+    background: #4b8df8;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition: all 0.2s ease;
+}
+
+.photo-change-btn:hover {
+    background: #367be8;
+
+    transform: translateY(-1px);
+}
+
+.photo-change-btn svg {
+    display: block;
+
+    width: 16px;
+    height: 16px;
+
+    color: white;
+
+    flex-shrink: 0;
+}
+
+.photo-change-btn span {
+    display: inline;
+}
+
+
+/* ==========================================
+   EDIÇÃO DO NOME / EMAIL
+========================================== */
+
+.profile-edit-name {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+
+    max-width: 400px;
+}
+
+.profile-edit-name label {
+    color: #555;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.profile-edit-name input {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    padding: 11px 13px;
+
+    border: 1px solid #d5dce5;
+
+    border-radius: 9px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    background: #fafbfd;
+
+    transition: 0.2s ease;
+}
+
+.profile-edit-name input:focus {
+    border-color: #4b8df8;
+
+    background: white;
+
+    box-shadow: 0 0 0 3px rgba(75, 141, 248, 0.1);
+}
+
+
+/* ==========================================
+   CONTROLES DA FOTO
+========================================== */
+
+.profile-photo-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 22px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #edf0f4;
+}
+
+
+/* ==========================================
+   BOTÃO REMOVER FOTO
+========================================== */
+
+.photo-remove-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    width: auto;
+    height: auto;
+
+    padding: 10px 16px;
+
+    margin: 0;
+
+    background: white;
+
+    color: #d32f2f;
+
+    border: 1px solid #e0baba;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    cursor: pointer;
+
+    box-sizing: border-box;
+
+    transition: all 0.2s ease;
+}
+
+.photo-remove-btn:hover {
+    background: #fff5f5;
+
+    border-color: #d99a9a;
+
+    transform: translateY(-1px);
+}
+
+.photo-remove-btn svg {
+    display: block;
+
+    width: 15px;
+    height: 15px;
+
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   AÇÕES DE EDIÇÃO
+========================================== */
+
+.profile-edit-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 22px;
+
+    padding-top: 20px;
+
+    border-top: 1px solid #edf0f4;
+}
+
+
+/* ==========================================
+   CANCELAR
+========================================== */
+
+.profile-cancel-btn {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    border: 1px solid #d5dbe4;
+
+    border-radius: 10px;
+
+    background: white;
+
+    color: #555;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.profile-cancel-btn:hover {
+    background: #f5f7fa;
+
+    border-color: #bfc7d2;
+}
+
+
+/* ==========================================
+   MENSAGENS
+========================================== */
+
+.profile-error {
+    padding: 13px 17px;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    background: #fff0f0;
+
+    color: #c0392b;
+
+    font-weight: 600;
+}
+
+.profile-success {
+    padding: 13px 17px;
+
+    margin-bottom: 20px;
+
+    border-radius: 10px;
+
+    background: #edf9f0;
+
+    color: #188038;
+
+    font-weight: 600;
+}
+
+
+/* ==========================================
+   SEÇÕES
+========================================== */
+
+.profile-section {
+    background: white;
+
+    border-radius: 20px;
+
+    padding: 28px 30px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.05);
+}
+
+
+/* ==========================================
+   TÍTULO DAS SEÇÕES
+========================================== */
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+}
+
+.section-title > svg {
+    width: 22px;
+    height: 22px;
+
+    color: #4b8df8;
+}
+
+.section-title h3 {
+    margin: 0;
+
+    color: #123b70;
+
+    font-size: 20px;
+}
+
+.section-title p {
+    margin: 4px 0 0;
+
+    color: #888;
+
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   INFORMAÇÕES
+========================================== */
+
+.profile-info-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.profile-info {
+    padding: 17px;
+
+    border-radius: 11px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf0f4;
+
+    transition: 0.2s ease;
+}
+
+.profile-info:hover {
+    border-color: #d5e5ff;
+
+    background: #f5f9ff;
+}
+
+.profile-info span {
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+.profile-info strong {
+    color: #333;
+
+    font-size: 15px;
+
+    word-break: break-word;
+}
+
+
+/* ==========================================
+   SEGURANÇA
+========================================== */
+
+.security-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf0f4;
+}
+
+.security-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: #e7f0ff;
+
+    color: #4b8df8;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+.security-info {
+    flex: 1;
+}
+
+.security-info strong {
+    display: block;
+
+    color: #222;
+
+    font-size: 16px;
+}
+
+.security-info span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   BOTÃO ALTERAR SENHA
+========================================== */
+
+.security-change-btn {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 9px;
+
+    padding: 12px 19px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #4b8df8;
+
+    color: white;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+
+    box-shadow: 0 4px 10px rgba(75, 141, 248, 0.18);
+}
+
+.security-change-btn:hover {
+    background: #367be8;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 7px 16px rgba(75, 141, 248, 0.25);
+}
+
+
+/* ==========================================
+   FORMULÁRIO DE SENHA
+========================================== */
+
+.password-form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+.password-field {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.password-field label {
+    color: #333;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.password-input {
+    display: flex;
+
+    align-items: center;
+
+    border: 1px solid #d5dce5;
+
+    border-radius: 9px;
+
+    background: #fafbfd;
+
+    overflow: hidden;
+
+    transition: 0.2s ease;
+}
+
+.password-input:focus-within {
+    border-color: #4b8df8;
+
+    background: white;
+
+    box-shadow: 0 0 0 3px rgba(75, 141, 248, 0.1);
+}
+
+.password-input input {
+    flex: 1;
+
+    width: 100%;
+
+    padding: 12px 13px;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 15px;
+}
+
+.password-input button {
+    width: 45px;
+
+    height: 45px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #777;
+
+    cursor: pointer;
+
+    font-size: 16px;
+}
+
+.password-input button:hover {
+    color: #4b8df8;
+}
+
+
+/* ==========================================
+   AÇÕES DA SENHA
+========================================== */
+
+.password-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 5px;
+}
+
+
+/* ==========================================
+   ESTATÍSTICAS
+========================================== */
+
+.profile-stats {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+.profile-stat {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+    border: 1px solid #edf0f4;
+
+    transition: 0.2s ease;
+}
+
+.profile-stat:hover {
+    border-color: #d5e5ff;
+
+    background: #f5f9ff;
+
+    transform: translateY(-2px);
+}
+
+.stat-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: #e7f0ff;
+
+    color: #4b8df8;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+.profile-stat strong {
+    display: block;
+
+    color: #222;
+
+    font-size: 20px;
+}
+
+.profile-stat span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   RODAPÉ
+========================================== */
+
+.profile-footer {
+    text-align: center;
+
+    margin: 30px 0 0;
+
+    color: #999;
+
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   RESPONSIVIDADE
+========================================== */
+
+@media (max-width: 700px) {
+
+    .profile-page {
+        padding: 25px 15px 40px;
+    }
+
+    .profile-top {
+        gap: 15px;
+    }
+
+    .profile-top h1 {
+        font-size: 23px;
+    }
+
+    .profile-card {
+        padding: 22px;
+    }
+
+    .profile-main {
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+    }
+
+    .profile-identity {
+        width: 100%;
+    }
+
+    .profile-identity h2 {
+        font-size: 25px;
+    }
+
+    .profile-edit-btn {
+        width: 100%;
+    }
+
+    .profile-edit-name {
+        width: 100%;
+
+        max-width: none;
+
+        text-align: left;
+    }
+
+    .profile-photo-actions {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .photo-change-btn,
+    .photo-remove-btn {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .profile-edit-actions,
+    .password-actions {
+        flex-direction: column;
+    }
+
+    .profile-cancel-btn,
+    .profile-save-btn {
+        width: 100%;
+    }
+
+    .security-card {
+        flex-wrap: wrap;
+    }
+
+    .security-info {
+        min-width: 150px;
+    }
+
+    .security-change-btn {
+        width: 100%;
+    }
+
+    .profile-info-grid,
+    .profile-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-section {
+        padding: 22px;
+    }
+}

@@ -136,10 +136,50 @@ async function removerTutor(req, res) {
     }
 }
 
+async function loginTutor(req, res) {
+    try {
+        const { emailtutor, senhatutor } = req.body;
+
+        const tutor = await prisma.tutor.findUnique({
+            where: {
+                emailtutor
+            }
+        });
+
+        if (!tutor) {
+            return res.status(401).json({
+                message: "E-mail ou senha incorretos"
+            });
+        }
+
+        if (tutor.senhatutor !== senhatutor) {
+            return res.status(401).json({
+                message: "E-mail ou senha incorretos"
+            });
+        }
+
+        res.json({
+            message: "Login realizado com sucesso",
+            tutor: {
+                idtutor: tutor.idtutor,
+                nometutor: tutor.nometutor,
+                emailtutor: tutor.emailtutor
+            }
+        });
+    } catch (erro) {
+        console.error(erro);
+
+        res.status(500).json({
+            message: "Erro ao realizar login"
+        });
+    }
+}
+
 export {
     listarTutores,
     buscarTutor,
     criarTutor,
     atualizarTutor,
-    removerTutor
+    removerTutor,
+    loginTutor
 };

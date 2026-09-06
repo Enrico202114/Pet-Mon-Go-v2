@@ -7,7 +7,7 @@ import {
     FaPills
 } from "react-icons/fa6";
 
-function Hero() {
+function Hero({ onOpenRegister }) {
     return (
         <>
             <section className="hero">
@@ -34,7 +34,10 @@ function Hero() {
 
                         <div className="hero-buttons">
 
-                            <button className="btn-start">
+                            <button
+                                className="btn-start"
+                                onClick={onOpenRegister}
+                            >
                                 <FaPaw />
                                 <span>Começar agora</span>
                             </button>
