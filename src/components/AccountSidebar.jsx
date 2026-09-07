@@ -18,6 +18,8 @@ function AccountSidebar({
   onOpenLogin,
   onOpenRegister,
   onOpenProfile,
+  onOpenFamily,
+  onCreateFamily,
   tutor,
   onLogout
 }) {
@@ -66,17 +68,35 @@ function AccountSidebar({
                 Meu Perfil
               </button>
 
-              <button className="sidebar-btn">
+              <button
+                className="sidebar-btn"
+                onClick={() => {
+                  closeSidebar();
+                  onOpenFamily();
+                }}
+              >
                 <FaUsers />
                 Minha Família
               </button>
 
-              <button className="sidebar-btn">
+              <button
+                className="sidebar-btn"
+                onClick={() => {
+                  closeSidebar();
+                  onCreateFamily();
+                }}
+              >
                 <FaUsers />
                 Criar Família
               </button>
 
-              <button className="sidebar-btn">
+              <button
+                className="sidebar-btn"
+                onClick={() => {
+                  closeSidebar();
+                  onOpenFamily();
+                }}
+              >
                 <FaSignOutAlt />
                 Sair da Família
               </button>

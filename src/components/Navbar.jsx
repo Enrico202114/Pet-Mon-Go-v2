@@ -8,6 +8,8 @@ function Navbar({
   onOpenLogin,
   onOpenRegister,
   onOpenProfile,
+  onOpenFamily,
+  onCreateFamily,
   tutor,
   onLogout
 }) {
@@ -41,6 +43,8 @@ function Navbar({
         onOpenLogin={onOpenLogin}
         onOpenRegister={onOpenRegister}
         onOpenProfile={onOpenProfile}
+        onOpenFamily={onOpenFamily}
+        onCreateFamily={onCreateFamily}
         tutor={tutor}
         onLogout={onLogout}
       />

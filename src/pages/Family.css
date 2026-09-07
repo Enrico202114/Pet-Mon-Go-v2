@@ -1,0 +1,1138 @@
+.family-page {
+  min-height: 100vh;
+  background: #f3f7fc;
+  color: #163b6d;
+}
+
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.app-navbar {
+  height: 98px;
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 22px;
+
+  box-sizing: border-box;
+
+  border-bottom: 1px solid #edf1f6;
+
+  position: relative;
+  z-index: 10;
+}
+
+
+.app-logo img {
+  width: 105px;
+  height: auto;
+  display: block;
+}
+
+
+.app-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+
+  margin: 0 auto;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #29496e;
+}
+
+
+.app-navbar-links span {
+  cursor: default;
+}
+
+
+.app-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #24486f;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.app-user-avatar {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e8f1fb;
+
+  color: #2375d8;
+
+  overflow: hidden;
+}
+
+
+.user-arrow {
+  font-size: 18px;
+  color: #6e849e;
+}
+
+
+/* ==========================================
+   LAYOUT
+========================================== */
+
+.family-layout {
+  display: flex;
+  min-height: calc(100vh - 78px);
+}
+
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.family-sidebar {
+  width: 190px;
+
+  flex-shrink: 0;
+
+  background: #ffffff;
+
+  border-right: 1px solid #e8eef5;
+
+  padding: 28px 18px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.family-sidebar-item,
+.family-sidebar-logout {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  border: none;
+
+  background: transparent;
+
+  padding: 12px 13px;
+
+  border-radius: 11px;
+
+  color: #5d7591;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition: 0.2s ease;
+}
+
+
+.family-sidebar-item svg,
+.family-sidebar-logout svg {
+  width: 17px;
+  flex-shrink: 0;
+}
+
+
+.family-sidebar-item:hover {
+  background: #f1f6fc;
+  color: #2678d8;
+}
+
+
+.family-sidebar-item.active {
+  background: #2478df;
+  color: #ffffff;
+
+  box-shadow: 0 6px 14px rgba(36, 120, 223, 0.18);
+}
+
+
+.family-sidebar-logout {
+  margin-top: auto;
+}
+
+
+.family-sidebar-logout:hover {
+  color: #2478df;
+  background: #f1f6fc;
+}
+
+
+/* ==========================================
+   CONTEÚDO
+========================================== */
+
+.family-content {
+  flex: 1;
+
+  padding: 32px 34px 45px;
+
+  min-width: 0;
+}
+
+
+.family-page-title {
+  margin-bottom: 24px;
+}
+
+
+.family-page-title h1 {
+  margin: 0;
+
+  color: #16447a;
+
+  font-size: 23px;
+  font-weight: 700;
+}
+
+
+.family-page-title p {
+  margin: 5px 0 0;
+
+  color: #6b829b;
+
+  font-size: 13px;
+}
+
+
+/* ==========================================
+   MENSAGENS
+========================================== */
+
+.family-message {
+  padding: 12px 16px;
+
+  border-radius: 10px;
+
+  margin-bottom: 18px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.family-message.success {
+  background: #e8f8ee;
+  color: #23804a;
+}
+
+
+.family-message.error {
+  background: #fff0f0;
+  color: #b63131;
+}
+
+
+/* ==========================================
+   CARD PRINCIPAL
+========================================== */
+
+.family-hero-card {
+  min-height: 118px;
+
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    110deg,
+    #e4f1ff,
+    #d5eaff
+  );
+
+  border-radius: 12px;
+
+  padding: 24px 28px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 16px;
+}
+
+
+.family-hero-info {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  position: relative;
+  z-index: 2;
+}
+
+
+.family-big-icon {
+  width: 57px;
+  height: 57px;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2878d9;
+
+  font-size: 29px;
+
+  box-shadow: 0 4px 12px rgba(40, 120, 217, 0.08);
+}
+
+
+.family-hero-info h2 {
+  margin: 0 0 5px;
+
+  font-size: 21px;
+
+  color: #14477d;
+}
+
+
+.family-hero-info p {
+  margin: 0;
+
+  color: #5680a8;
+
+  font-size: 13px;
+}
+
+
+.family-edit-btn {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 11px 18px;
+
+  border: 1px solid #c8dff5;
+
+  background: rgba(255, 255, 255, 0.7);
+
+  border-radius: 10px;
+
+  color: #2376d4;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+.family-paws {
+  position: absolute;
+
+  right: 20px;
+  bottom: -16px;
+
+  display: flex;
+
+  gap: 25px;
+
+  color: rgba(57, 130, 220, 0.12);
+
+  font-size: 64px;
+
+  transform: rotate(-8deg);
+}
+
+
+/* ==========================================
+   GRID
+========================================== */
+
+.family-bottom-grid {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 245px;
+
+  gap: 15px;
+
+  margin-bottom: 15px;
+}
+
+
+/* ==========================================
+   MEMBROS
+========================================== */
+
+.family-members-card {
+  background: #ffffff;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  border: 1px solid #e8eef5;
+
+  box-shadow: 0 4px 14px rgba(30, 71, 110, 0.04);
+}
+
+
+.family-section-header {
+  margin-bottom: 16px;
+}
+
+
+.family-section-header h2 {
+  margin: 0;
+
+  color: #17477c;
+
+  font-size: 15px;
+}
+
+
+.family-section-header p {
+  margin: 4px 0 0;
+
+  color: #8193a7;
+
+  font-size: 12px;
+}
+
+
+.family-members-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+
+.family-member-card {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  padding: 13px;
+
+  border: 1px solid #e8eef5;
+
+  border-radius: 10px;
+
+  background: #fbfdff;
+
+  position: relative;
+}
+
+
+.member-avatar {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #e7f1fc;
+
+  color: #2777d3;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 17px;
+}
+
+
+.member-data {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+.member-data strong {
+  color: #24517f;
+
+  font-size: 13px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.member-role {
+  width: fit-content;
+
+  padding: 2px 7px;
+
+  border-radius: 10px;
+
+  background: #e7f3ff;
+
+  color: #2777d3;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+
+.member-email {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+
+  color: #8295aa;
+
+  font-size: 9px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.member-email svg {
+  flex-shrink: 0;
+}
+
+
+.member-arrow {
+  margin-left: auto;
+
+  color: #7d9bb8;
+
+  font-size: 11px;
+}
+
+
+/* ==========================================
+   CARD LATERAL
+========================================== */
+
+.family-love-card {
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    145deg,
+    #eef6ff,
+    #e2f0ff
+  );
+
+  border-radius: 12px;
+
+  padding: 22px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #dbeaf8;
+}
+
+
+.love-icon {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 11px;
+
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #2878d9;
+
+  margin-bottom: 14px;
+}
+
+
+.family-love-card h3 {
+  margin: 0 0 7px;
+
+  color: #2670bb;
+
+  font-size: 14px;
+}
+
+
+.family-love-card p {
+  margin: 0;
+
+  color: #6082a2;
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
+
+.love-paws {
+  position: absolute;
+
+  right: 7px;
+  bottom: -8px;
+
+  color: rgba(49, 126, 217, 0.13);
+
+  display: flex;
+  gap: 9px;
+
+  font-size: 35px;
+}
+
+
+/* ==========================================
+   INFORMAÇÕES
+========================================== */
+
+.family-info-row {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 15px;
+
+  margin-bottom: 15px;
+}
+
+
+.family-code-box,
+.family-date-box {
+  background: #ffffff;
+
+  border: 1px solid #e8eef5;
+
+  border-radius: 11px;
+
+  padding: 15px 18px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+}
+
+
+.info-icon {
+  width: 38px;
+  height: 38px;
+
+  border-radius: 10px;
+
+  background: #edf5ff;
+
+  color: #2878d9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.family-code-box span,
+.family-date-box span {
+  display: block;
+
+  color: #8799ac;
+
+  font-size: 10px;
+
+  margin-bottom: 4px;
+}
+
+
+.family-code-box strong,
+.family-date-box strong {
+  color: #315f89;
+
+  font-size: 14px;
+}
+
+
+.family-code-box strong {
+  letter-spacing: 3px;
+}
+
+
+/* ==========================================
+   SAIR
+========================================== */
+
+.family-leave-card {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding: 17px 20px;
+
+  background: #ffffff;
+
+  border: 1px solid #f0dddd;
+
+  border-radius: 11px;
+}
+
+
+.family-leave-card h3 {
+  margin: 0 0 4px;
+
+  color: #a84646;
+
+  font-size: 13px;
+}
+
+
+.family-leave-card p {
+  margin: 0;
+
+  color: #8794a1;
+
+  font-size: 11px;
+}
+
+
+.family-leave-card button {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 9px 14px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #ef6b6b;
+
+  color: #ffffff;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* ==========================================
+   ESTADO VAZIO
+========================================== */
+
+.family-empty {
+  max-width: 620px;
+
+  margin: 50px auto;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+
+  padding: 45px 30px;
+
+  text-align: center;
+
+  border: 1px solid #e8eef5;
+
+  box-shadow: 0 5px 20px rgba(30, 71, 110, 0.05);
+}
+
+
+.family-empty-icon {
+  width: 70px;
+  height: 70px;
+
+  margin: 0 auto 18px;
+
+  border-radius: 50%;
+
+  background: #eaf3ff;
+
+  color: #2778d8;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 28px;
+}
+
+
+.family-empty h2 {
+  margin: 0;
+
+  color: #17477c;
+
+  font-size: 21px;
+}
+
+
+.family-empty p {
+  max-width: 440px;
+
+  margin: 9px auto 25px;
+
+  color: #8293a5;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+.family-actions {
+  display: flex;
+
+  justify-content: center;
+
+  gap: 10px;
+}
+
+
+.family-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 11px 17px;
+
+  border-radius: 9px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+.family-action-btn.primary {
+  border: none;
+
+  background: #2878d9;
+
+  color: #ffffff;
+}
+
+
+.family-action-btn.secondary {
+  border: 1px solid #bcd7f2;
+
+  background: #ffffff;
+
+  color: #2878d9;
+}
+
+
+/* ==========================================
+   FORMULÁRIOS
+========================================== */
+
+.family-form-card {
+  width: min(500px, 100%);
+
+  margin: 60px auto;
+
+  background: #ffffff;
+
+  padding: 35px;
+
+  box-sizing: border-box;
+
+  border-radius: 16px;
+
+  border: 1px solid #e5edf6;
+
+  box-shadow: 0 7px 25px rgba(30, 71, 110, 0.06);
+}
+
+
+.family-form-icon {
+  width: 52px;
+  height: 52px;
+
+  margin-bottom: 17px;
+
+  border-radius: 13px;
+
+  background: #eaf3ff;
+
+  color: #2878d9;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 21px;
+}
+
+
+.family-form-card h2 {
+  margin: 0 0 6px;
+
+  color: #17477c;
+
+  font-size: 21px;
+}
+
+
+.family-form-card > p {
+  margin: 0 0 24px;
+
+  color: #8192a5;
+
+  font-size: 13px;
+}
+
+
+.family-form-card label {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 7px;
+
+  color: #496782;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.family-form-card input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 12px 13px;
+
+  border: 1px solid #d8e2ec;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  font-size: 13px;
+
+  color: #294d70;
+
+  background: #fbfdff;
+}
+
+
+.family-form-card input:focus {
+  border-color: #4d91df;
+
+  box-shadow: 0 0 0 3px rgba(77, 145, 223, 0.1);
+}
+
+
+.family-form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 9px;
+
+  margin-top: 22px;
+}
+
+
+.family-cancel-btn,
+.family-submit-btn {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 10px 15px;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+.family-cancel-btn {
+  border: 1px solid #d5dee8;
+
+  background: #ffffff;
+
+  color: #63778b;
+}
+
+
+.family-submit-btn {
+  border: none;
+
+  background: #2878d9;
+
+  color: #ffffff;
+}
+
+
+/* ==========================================
+   LOADING
+========================================== */
+
+.family-loading {
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  color: #2878d9;
+}
+
+
+.family-loading svg {
+  font-size: 35px;
+}
+
+
+.family-loading p {
+  margin: 0;
+
+  color: #7c8fa3;
+
+  font-size: 13px;
+}
+
+
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+@media (max-width: 1000px) {
+
+  .family-sidebar {
+    width: 160px;
+  }
+
+  .family-content {
+    padding: 25px;
+  }
+
+  .family-members-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 750px) {
+
+  .app-navbar {
+    padding: 0 18px;
+  }
+
+  .app-navbar-links {
+    display: none;
+  }
+
+  .family-sidebar {
+    width: 70px;
+    padding: 20px 10px;
+  }
+
+  .family-sidebar-item,
+  .family-sidebar-logout {
+    justify-content: center;
+  }
+
+  .family-sidebar-item span,
+  .family-sidebar-logout span {
+    display: none;
+  }
+
+  .family-content {
+    padding: 22px 15px;
+  }
+
+  .family-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .family-info-row {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+@media (max-width: 500px) {
+
+  .app-user span:not(.user-arrow) {
+    display: none;
+  }
+
+  .family-hero-card {
+    align-items: flex-start;
+    gap: 15px;
+    flex-direction: column;
+  }
+
+  .family-edit-btn {
+    align-self: flex-start;
+  }
+
+  .family-leave-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .family-actions {
+    flex-direction: column;
+  }
+
+  .family-action-btn {
+    justify-content: center;
+  }
+
+}

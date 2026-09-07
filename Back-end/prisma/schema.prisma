@@ -18,11 +18,13 @@
   }
 
   model familia {
-    idfamilia        Int      @id @default(autoincrement())
-    nomefamilia      String   @db.VarChar
-    sobrenomefamilia String   @db.VarChar
-    datacriacao      DateTime @unique @db.Date
-  }
+    idfamilia    Int      @id @default(autoincrement())
+    nomefamilia  String   @db.VarChar
+    codigofamilia String @unique @db.VarChar
+    datacriacao  DateTime @default(now()) @db.Date
+
+    membros      tutor[]  @relation("FamiliaMembros")
+}
 
   model medicacao {
     idmedicacao           Int      @id @default(autoincrement())
@@ -53,8 +55,12 @@
     nometutor  String      @db.VarChar
     emailtutor String      @unique @db.VarChar
     senhatutor String      @db.VarChar
+
+    idfamilia  Int?
+    familia    familia?    @relation("FamiliaMembros", fields: [idfamilia], references: [idfamilia])
+
     tutorchefe tutorchefe?
-  }
+}
 
   model tutorchefe {
     idtutorchefe Int   @id @default(autoincrement())

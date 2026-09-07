@@ -1,0 +1,536 @@
+/* =========================================
+   HOME
+========================================= */
+
+.home-page {
+    width: 100%;
+    min-height: 100vh;
+
+    background: transparent;
+
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   POR QUE ESCOLHER
+========================================= */
+
+.why-section {
+    width: 100%;
+
+    padding: 65px 5% 70px;
+
+    background: #fff8ef;
+
+    text-align: center;
+}
+
+.section-title {
+    max-width: 1200px;
+
+    margin: 0 auto 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 25px;
+}
+
+.section-title h2 {
+    margin: 0;
+
+    color: #123b86;
+
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.section-title p {
+    margin: 10px 0 0;
+
+    color: #183d79;
+
+    font-size: 17px;
+}
+
+.section-line {
+    width: 70px;
+    height: 3px;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #ff9418;
+}
+
+
+/* =========================================
+   CARDS DOS BENEFÍCIOS
+========================================= */
+
+.why-cards {
+    width: 100%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 35px;
+}
+
+.why-card {
+    padding: 10px 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.why-icon {
+    width: 100px;
+    height: 100px;
+
+    margin-bottom: 20px;
+
+    border-radius: 50%;
+
+    background: #e3edff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 4px 12px rgba(18, 59, 134, 0.08);
+}
+
+.why-icon svg {
+    font-size: 43px;
+
+    color: #123b86;
+}
+
+.why-card h3 {
+    margin: 0 0 10px;
+
+    color: #123b86;
+
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.why-card p {
+    max-width: 250px;
+
+    margin: 0;
+
+    color: #183d79;
+
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   SERVIÇOS
+========================================= */
+
+.services-section {
+    width: 100%;
+
+    padding: 70px 5% 80px;
+
+    background: #e3edff;
+}
+
+.services-header {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 0 auto 40px;
+
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.services-header h2 {
+    margin: 0 0 10px;
+
+    color: #123b86;
+
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.services-header p {
+    margin: 0;
+
+    color: #183d79;
+
+    font-size: 17px;
+}
+
+.services-all-btn {
+    border: none;
+
+    padding: 11px 16px 11px 20px;
+
+    border-radius: 25px;
+
+    background: #123b86;
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    transition: 0.25s;
+}
+
+.services-all-btn span {
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: #123b86;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.services-all-btn:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =========================================
+   CARDS GRANDES
+========================================= */
+
+.service-cards {
+    width: 100%;
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 25px;
+}
+
+.service-card {
+    height: 300px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border-radius: 22px;
+
+    border: 2px solid rgba(18, 59, 134, 0.12);
+
+    box-shadow: 0 8px 20px rgba(18, 59, 134, 0.12);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    display: flex;
+    align-items: flex-end;
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+
+    box-shadow: 0 14px 28px rgba(18, 59, 134, 0.18);
+}
+
+
+/* =========================================
+   FUNDOS TEMPORÁRIOS DOS CARDS
+========================================= */
+
+.service-card-vaccine {
+    background:
+        linear-gradient(
+            145deg,
+            #dcecff,
+            #9fc4e8
+        );
+}
+
+.service-card-food {
+    background:
+        linear-gradient(
+            145deg,
+            #fff0d9,
+            #d9b987
+        );
+}
+
+.service-card-walk {
+    background:
+        linear-gradient(
+            145deg,
+            #e7ded4,
+            #a99078
+        );
+}
+
+.service-card-medicine {
+    background:
+        linear-gradient(
+            145deg,
+            #dcebf3,
+            #91b5ca
+        );
+}
+
+
+/* =========================================
+   CONTEÚDO DOS CARDS
+========================================= */
+
+.service-content {
+    width: 100%;
+
+    padding: 75px 22px 22px;
+
+    color: #ffffff;
+
+    background: linear-gradient(
+        transparent,
+        rgba(0, 0, 0, 0.78)
+    );
+}
+
+.service-content span {
+    display: inline-flex;
+
+    margin-bottom: 5px;
+
+    color: #ff9418;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.service-content h3 {
+    margin: 0 0 6px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+}
+
+.service-content p {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   CTA
+========================================= */
+
+.cta-section {
+    width: 100%;
+
+    padding: 50px 5% 65px;
+
+    background: #e3edff;
+}
+
+.cta-card {
+    width: 100%;
+    max-width: 1250px;
+
+    min-height: 220px;
+
+    margin: 0 auto;
+
+    padding: 35px 55px;
+
+    border-radius: 25px;
+
+    background: #123f8a;
+
+    display: flex;
+    align-items: center;
+
+    gap: 35px;
+
+    box-shadow: 0 10px 25px rgba(18, 59, 134, 0.18);
+}
+
+.cta-icon {
+    width: 115px;
+    height: 115px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cta-icon svg {
+    font-size: 60px;
+
+    color: #123b86;
+}
+
+.cta-text {
+    flex: 1;
+}
+
+.cta-text h2 {
+    margin: 0 0 12px;
+
+    color: #ffffff;
+
+    font-size: 32px;
+    line-height: 1.15;
+}
+
+.cta-text p {
+    max-width: 620px;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 17px;
+    line-height: 1.45;
+}
+
+.cta-actions {
+    flex-shrink: 0;
+}
+
+.cta-primary {
+    min-height: 54px;
+
+    padding: 0 25px;
+
+    border: none;
+
+    border-radius: 30px;
+
+    background: #ff9418;
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    font-size: 17px;
+    font-weight: 700;
+
+    transition: 0.25s;
+}
+
+.cta-primary:hover {
+    transform: translateY(-3px);
+
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================
+   RESPONSIVIDADE
+========================================= */
+
+@media (max-width: 1000px) {
+
+    .why-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .service-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cta-card {
+        padding: 35px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .section-title {
+        gap: 12px;
+    }
+
+    .section-line {
+        display: none;
+    }
+
+    .section-title h2 {
+        font-size: 27px;
+    }
+
+    .why-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .services-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .service-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-card {
+        flex-direction: column;
+
+        text-align: center;
+
+        padding: 35px 25px;
+    }
+
+    .cta-text p {
+        margin: 0 auto;
+    }
+
+    .cta-actions {
+        width: 100%;
+    }
+
+    .cta-primary {
+        width: 100%;
+    }
+}
