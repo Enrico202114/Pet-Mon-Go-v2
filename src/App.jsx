@@ -56,14 +56,15 @@ function App() {
 
 if (tela === "profile") {
     return (
-        <Profile
-            tutor={tutor}
-            onBack={() => setTela("home")}
-            onOpenFamily={() => {
-                setModoFamilia(null);
-                setTela("family");
-            }}
-        />
+          <Profile
+              tutor={tutor}
+              onBack={() => setTela("home")}
+              onOpenFamily={() => {
+                  setModoFamilia(null);
+                  setTela("family");
+              }}
+              onAccountDeleted={handleLogout}
+          />
     );
 }
 

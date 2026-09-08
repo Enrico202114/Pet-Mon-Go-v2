@@ -1,14 +1,35 @@
 import { useEffect, useState } from "react";
 
-import {FaUser, FaPaw, FaUsers, FaPen, FaSave, FaTimes, FaCamera, FaTrash, FaLock, FaEye, FaEyeSlash, FaShieldAlt, FaEnvelope, FaChevronRight, FaSignOutAlt} from "react-icons/fa";
+import {
+    FaUser,
+    FaPaw,
+    FaUsers,
+    FaPen,
+    FaSave,
+    FaTimes,
+    FaCamera,
+    FaTrash,
+    FaLock,
+    FaEye,
+    FaEyeSlash,
+    FaShieldAlt,
+    FaEnvelope,
+    FaChevronRight,
+    FaSignOutAlt
+} from "react-icons/fa";
+
 import logo from "../assets/logo.png";
 import "./Profile.css";
 
-function Profile({tutor, onBack, onOpenFamily}) {
+
+function Profile({
+    tutor,
+    onBack,
+    onOpenFamily,
+    onAccountDeleted
+}) {
 
     const [editando, setEditando] = useState(false);
-
-
 
     const [nome, setNome] = useState(tutor.nometutor);
     const [email, setEmail] = useState(tutor.emailtutor);
@@ -29,46 +50,70 @@ function Profile({tutor, onBack, onOpenFamily}) {
     const [mensagemSenha, setMensagemSenha] = useState("");
     const [erroSenha, setErroSenha] = useState("");
 
+    const [excluindoConta, setExcluindoConta] = useState(false);
+    const [erroExclusao, setErroExclusao] = useState("");
+
     const [familia, setFamilia] = useState(null);
 
-useEffect(() => {
-    async function carregarFamilia() {
-        try {
-            const respostaTutor = await fetch(
-                `http://localhost:3000/tutores/${tutor.idtutor}`
-            );
 
-            if (!respostaTutor.ok) {
-                return;
-            }
+    // ==========================================
+    // CARREGAR FAMÍLIA
+    // ==========================================
 
-            const dadosTutor = await respostaTutor.json();
+    useEffect(() => {
 
-            if (!dadosTutor.idfamilia) {
+        async function carregarFamilia() {
+
+            try {
+
+                const respostaTutor = await fetch(
+                    `http://localhost:3000/tutores/${tutor.idtutor}`
+                );
+
+                if (!respostaTutor.ok) {
+                    return;
+                }
+
+                const dadosTutor = await respostaTutor.json();
+
+                if (!dadosTutor.idfamilia) {
+
+                    setFamilia(null);
+
+                    return;
+                }
+
+                const respostaFamilia = await fetch(
+                    `http://localhost:3000/familias/${dadosTutor.idfamilia}`
+                );
+
+                if (!respostaFamilia.ok) {
+                    return;
+                }
+
+                const dadosFamilia = await respostaFamilia.json();
+
+                setFamilia(dadosFamilia);
+
+            } catch (error) {
+
+                console.error(
+                    "Erro ao carregar família:",
+                    error
+                );
+
                 setFamilia(null);
-                return;
             }
-
-            const respostaFamilia = await fetch(
-                `http://localhost:3000/familias/${dadosTutor.idfamilia}`
-            );
-
-            if (!respostaFamilia.ok) {
-                return;
-            }
-
-            const dadosFamilia = await respostaFamilia.json();
-
-            setFamilia(dadosFamilia);
-
-        } catch (error) {
-            console.error("Erro ao carregar família:", error);
-            setFamilia(null);
         }
-    }
 
-    carregarFamilia();
-}, [tutor.idtutor]);
+        carregarFamilia();
+
+    }, [tutor.idtutor]);
+
+
+    // ==========================================
+    // FOTO DE PERFIL
+    // ==========================================
 
     function selecionarFoto(e) {
 
@@ -101,8 +146,8 @@ useEffect(() => {
         leitor.onload = () => {
 
             setFotoPerfil(leitor.result);
-            setErro("");
 
+            setErro("");
         };
 
         leitor.readAsDataURL(arquivo);
@@ -112,9 +157,14 @@ useEffect(() => {
     function removerFoto() {
 
         setFotoPerfil(null);
-        setErro("");
 
+        setErro("");
     }
+
+
+    // ==========================================
+    // EDITAR PERFIL
+    // ==========================================
 
     function salvarAlteracoes(e) {
 
@@ -125,14 +175,18 @@ useEffect(() => {
 
         if (!nome.trim()) {
 
-            setErro("Digite seu nome.");
+            setErro(
+                "Digite seu nome."
+            );
 
             return;
         }
 
         if (!email.trim()) {
 
-            setErro("Digite seu e-mail.");
+            setErro(
+                "Digite seu e-mail."
+            );
 
             return;
         }
@@ -155,6 +209,11 @@ useEffect(() => {
 
         setEditando(false);
     }
+
+
+    // ==========================================
+    // ALTERAR SENHA
+    // ==========================================
 
     function salvarNovaSenha(e) {
 
@@ -201,9 +260,74 @@ useEffect(() => {
     }
 
 
+    // ==========================================
+    // EXCLUIR CONTA
+    // ==========================================
+
+    async function excluirConta() {
+
+        setErroExclusao("");
+        setExcluindoConta(true);
+
+        try {
+
+            const resposta = await fetch(
+                `http://localhost:3000/tutores/${tutor.idtutor}`,
+                {
+                    method: "DELETE"
+                }
+            );
+
+            const dados = await resposta.json();
+
+            if (!resposta.ok) {
+
+                setErroExclusao(
+                    dados.message ||
+                    "Não foi possível excluir a conta."
+                );
+
+                setExcluindoConta(false);
+
+                return;
+            }
+
+            // Remove o tutor salvo no navegador
+            localStorage.removeItem(
+                "petmon_tutor"
+            );
+
+            // Informa ao App que a conta foi excluída
+            onAccountDeleted();
+
+        } catch (error) {
+
+            console.error(
+                "Erro ao excluir conta:",
+                error
+            );
+
+            setErroExclusao(
+                "Não foi possível conectar ao servidor."
+            );
+
+            setExcluindoConta(false);
+        }
+    }
+
+
+    // ==========================================
+    // TELA
+    // ==========================================
+
     return (
 
         <div className="profile-page">
+
+
+            {/* ==========================================
+                NAVBAR
+            ========================================== */}
 
             <header className="app-navbar">
 
@@ -233,7 +357,13 @@ useEffect(() => {
 
             </header>
 
+
             <div className="profile-layout">
+
+
+                {/* ==========================================
+                    SIDEBAR
+                ========================================== */}
 
                 <aside className="profile-sidebar">
 
@@ -293,6 +423,11 @@ useEffect(() => {
 
                 </aside>
 
+
+                {/* ==========================================
+                    CONTEÚDO
+                ========================================== */}
+
                 <main className="profile-content">
 
 
@@ -316,18 +451,28 @@ useEffect(() => {
                     {erro && (
 
                         <div className="profile-message error">
+
                             {erro}
+
                         </div>
 
                     )}
+
 
                     {mensagem && (
 
                         <div className="profile-message success">
+
                             {mensagem}
+
                         </div>
 
                     )}
+
+
+                    {/* ==========================================
+                        PERFIL PRINCIPAL
+                    ========================================== */}
 
                     <section className="profile-hero-card">
 
@@ -407,8 +552,11 @@ useEffect(() => {
                                         </p>
 
                                         <span>
+
                                             <FaEnvelope />
+
                                             {email}
+
                                         </span>
 
                                     </>
@@ -416,6 +564,7 @@ useEffect(() => {
                                 ) : (
 
                                     <div className="profile-edit-name">
+
 
                                         <label>
                                             Nome
@@ -475,11 +624,14 @@ useEffect(() => {
                         </div>
 
 
-                        {/* AÇÕES DA FOTO */}
+                        {/* ==========================================
+                            AÇÕES DA FOTO
+                        ========================================== */}
 
                         {editando && (
 
                             <div className="profile-photo-actions">
+
 
                                 <label
                                     htmlFor="fotoPerfil"
@@ -518,10 +670,14 @@ useEffect(() => {
                         )}
 
 
+                        {/* ==========================================
+                            AÇÕES DE EDIÇÃO
+                        ========================================== */}
 
                         {editando && (
 
                             <div className="profile-edit-actions">
+
 
                                 <button
                                     type="button"
@@ -554,6 +710,11 @@ useEffect(() => {
 
                     </section>
 
+
+                    {/* ==========================================
+                        INFORMAÇÕES DA CONTA
+                    ========================================== */}
+
                     <section className="profile-section">
 
 
@@ -564,6 +725,7 @@ useEffect(() => {
                                 <FaUser />
 
                             </div>
+
 
                             <div>
 
@@ -612,6 +774,11 @@ useEffect(() => {
 
                     </section>
 
+
+                    {/* ==========================================
+                        SEGURANÇA
+                    ========================================== */}
+
                     <section className="profile-section">
 
 
@@ -622,6 +789,7 @@ useEffect(() => {
                                 <FaShieldAlt />
 
                             </div>
+
 
                             <div>
 
@@ -710,6 +878,7 @@ useEffect(() => {
                                             }
                                         />
 
+
                                         <button
                                             type="button"
                                             onClick={() =>
@@ -720,9 +889,13 @@ useEffect(() => {
                                         >
 
                                             {mostrarNovaSenha ? (
+
                                                 <FaEyeSlash />
+
                                             ) : (
+
                                                 <FaEye />
+
                                             )}
 
                                         </button>
@@ -755,6 +928,7 @@ useEffect(() => {
                                             }
                                         />
 
+
                                         <button
                                             type="button"
                                             onClick={() =>
@@ -765,9 +939,13 @@ useEffect(() => {
                                         >
 
                                             {mostrarConfirmarSenha ? (
+
                                                 <FaEyeSlash />
+
                                             ) : (
+
                                                 <FaEye />
+
                                             )}
 
                                         </button>
@@ -800,6 +978,7 @@ useEffect(() => {
 
 
                                 <div className="password-actions">
+
 
                                     <button
                                         type="button"
@@ -840,6 +1019,11 @@ useEffect(() => {
 
                     </section>
 
+
+                    {/* ==========================================
+                        RESUMO PET MON GO
+                    ========================================== */}
+
                     <section className="profile-section">
 
 
@@ -850,6 +1034,7 @@ useEffect(() => {
                                 <FaPaw />
 
                             </div>
+
 
                             <div>
 
@@ -869,6 +1054,8 @@ useEffect(() => {
                         <div className="profile-stats">
 
 
+                            {/* PETS */}
+
                             <div className="profile-stat">
 
                                 <div className="stat-icon">
@@ -876,6 +1063,7 @@ useEffect(() => {
                                     <FaPaw />
 
                                 </div>
+
 
                                 <div>
 
@@ -889,28 +1077,45 @@ useEffect(() => {
 
                                 </div>
 
-                                <FaChevronRight className="stat-arrow" />
+
+                                <FaChevronRight
+                                    className="stat-arrow"
+                                />
 
                             </div>
 
 
+                            {/* FAMÍLIA */}
+
                             <div className="profile-stat">
+
                                 <div className="stat-icon">
+
                                     <FaUsers />
+
                                 </div>
 
+
                                 <div>
-                                    <strong>{familia ? "1" : "0"}</strong>
+
+                                    <strong>
+                                        {familia ? "1" : "0"}
+                                    </strong>
 
                                     <span>
+
                                         {familia
                                             ? familia.nomefamilia
                                             : "Nenhuma família"}
-                                    </span>
-                                </div>
-                            
 
-                                <FaChevronRight className="stat-arrow" />
+                                    </span>
+
+                                </div>
+
+
+                                <FaChevronRight
+                                    className="stat-arrow"
+                                />
 
                             </div>
 
@@ -918,6 +1123,116 @@ useEffect(() => {
 
                     </section>
 
+
+                    {/* ==========================================
+                        EXCLUIR CONTA
+                    ========================================== */}
+
+                    <section className="profile-section delete-account-section">
+
+
+                        <div className="section-title">
+
+                            <div className="section-title-icon">
+
+                                <FaTrash />
+
+                            </div>
+
+
+                            <div>
+
+                                <h3>
+                                    Excluir conta
+                                </h3>
+
+                                <p>
+                                    Gerencie sua conta Pet Mon Go.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        {!excluindoConta ? (
+
+                            <div className="delete-account-card">
+
+
+                                <div className="delete-account-info">
+
+                                    <strong>
+                                        Excluir minha conta
+                                    </strong>
+
+                                    <span>
+                                        Esta ação removerá sua conta permanentemente.
+                                    </span>
+
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    className="delete-account-btn"
+                                    onClick={() => {
+
+                                        const confirmar =
+                                            window.confirm(
+                                                "Tem certeza que deseja excluir sua conta? Essa ação não poderá ser desfeita."
+                                            );
+
+                                        if (confirmar) {
+
+                                            excluirConta();
+
+                                        }
+
+                                    }}
+                                >
+
+                                    <FaTrash />
+
+                                    Excluir conta
+
+                                </button>
+
+                            </div>
+
+                        ) : (
+
+                            <div className="delete-account-confirm">
+
+                                <strong>
+                                    Excluindo sua conta...
+                                </strong>
+
+                                <span>
+                                    Aguarde enquanto removemos sua conta.
+                                </span>
+
+                            </div>
+
+                        )}
+
+
+                        {erroExclusao && (
+
+                            <div className="profile-message error">
+
+                                {erroExclusao}
+
+                            </div>
+
+                        )}
+
+                    </section>
+
+
+                    {/* ==========================================
+                        RODAPÉ
+                    ========================================== */}
 
                     <p className="profile-footer">
 
@@ -932,5 +1247,6 @@ useEffect(() => {
         </div>
     );
 }
+
 
 export default Profile;
