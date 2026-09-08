@@ -1,26 +1,9 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero/hero";
-
-import {
-  FaCalendarAlt,
-  FaBell,
-  FaClipboardList,
-  FaHeart,
-  FaArrowRight,
-  FaPaw
-} from "react-icons/fa";
-
+import {FaCalendarAlt, FaBell, FaClipboardList, FaHeart, FaArrowRight, FaPaw} from "react-icons/fa";
 import "./Home.css";
 
-function Home({
-  onOpenLogin,
-  onOpenRegister,
-  onOpenProfile,
-  tutor,
-  onLogout,
-  onOpenFamily,
-  onCreateFamily
-}) {
+function Home({onOpenLogin, onOpenRegister, onOpenProfile, tutor, onLogout, onOpenFamily, onCreateFamily}) {
   return (
     <div className="home-page">
 
@@ -37,10 +20,6 @@ function Home({
       <Hero
         onOpenRegister={onOpenRegister}
       />
-
-      {/* =====================================
-          POR QUE ESCOLHER O PET MON GO
-      ====================================== */}
 
       <section className="why-section">
 
@@ -128,11 +107,6 @@ function Home({
         </div>
 
       </section>
-
-
-      {/* =====================================
-          CUIDADOS QUE FAZEM A DIFERENÇA
-      ====================================== */}
 
       <section className="services-section">
 
@@ -238,11 +212,6 @@ function Home({
         </div>
 
       </section>
-
-
-      {/* =====================================
-          CTA
-      ====================================== */}
 
       <section className="cta-section">
 

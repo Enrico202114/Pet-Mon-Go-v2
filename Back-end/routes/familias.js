@@ -1,5 +1,4 @@
 import express from "express";
-
 import {criarFamilia, buscarFamilia, entrarFamilia, sairFamilia} from "../controllers/familiaController.js";
 
 const router = express.Router();

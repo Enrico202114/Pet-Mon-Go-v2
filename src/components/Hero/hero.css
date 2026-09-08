@@ -1,7 +1,3 @@
-/* =========================================
-   FUNDO PRINCIPAL
-========================================= */
-
 body {
     background-image: url("../../assets/hero.png");
     background-size: 100% auto;
@@ -10,38 +6,23 @@ body {
     background-color: #ffffff;
 }
 
-
-/* =========================================
-   HERO
-========================================= */
-
 .hero {
     width: 100%;
     min-height: 560px;
-
     position: relative;
     overflow: hidden;
-
     background: transparent;
 }
 
 .hero-content {
     width: 100%;
     min-height: 560px;
-
     position: relative;
     z-index: 2;
-
     display: flex;
     align-items: flex-end;
-
     box-sizing: border-box;
 }
-
-
-/* =========================================
-   TEXTO DO HERO
-========================================= */
 
 .hero-text {
     width: 46%;
@@ -54,9 +35,7 @@ body {
 
 .hero-text h1 {
     margin: 0 auto;
-
     color: #123b86;
-
     font-size: clamp(38px, 3.2vw, 52px);
     line-height: 1.08;
     max-width: 580px;
@@ -70,52 +49,37 @@ body {
 
 .hero-text p {
     margin: 16px auto 0;
-
     max-width: 520px;
-
     color: #183d79;
-
     font-size: 16px;
     line-height: 1.45;
-
     font-weight: 400;
 }
 
 .hero-buttons {
     margin-top: 16px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     gap: 14px;
 }
 
 .btn-start {
     min-height: 52px;
     height: 48px;
-
     padding: 0 24px;
-
     border: none;
     border-radius: 28px;
-
     background: #ff9418;
     color: #ffffff;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     gap: 9px;
-
     font-size: 15px;
     font-weight: 600;
-
     white-space: nowrap;
-
     cursor: pointer;
-
     transition:
         transform 0.25s ease,
         background 0.25s ease,
@@ -124,28 +88,20 @@ body {
 
 .btn-start:hover {
     transform: translateY(-3px);
-
     background: #f88908;
-
     box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
 }
 
 .btn-more {
     min-height: 52px;
-
     padding: 13px 28px;
-
     border-radius: 28px;
     border: 2px solid #123b86;
-
     background: transparent;
     color: #123b86;
-
     font-size: 17px;
     font-weight: 600;
-
     cursor: pointer;
-
     transition:
         background 0.25s ease,
         color 0.25s ease,
@@ -155,62 +111,39 @@ body {
 .btn-more:hover {
     background: #123b86;
     color: #ffffff;
-
     transform: translateY(-3px);
 }
-
-
-/* =========================================
-   ÁREA DOS 4 CARDS
-========================================= */
 
 .care-section {
     width: 100%;
     min-height: 430px;
-
     padding: 70px 20px 120px;
-
     box-sizing: border-box;
-
     text-align: center;
-
     background: #fff8ef;
-
     position: relative;
-
     overflow: hidden;
-
     z-index: 3;
 }
 
 .care-section::after {
     content: "";
-
     position: absolute;
-
     left: -5%;
     bottom: 0;
-
     width: 110%;
     height: 95px;
-
     background: #ffffff;
-
     border-radius: 50% 50% 0 0 / 55% 55% 0 0;
-
     z-index: 1;
 }
 
 .care-section h2 {
     margin: 0 0 25px;
-
     color: #123f8a;
-
     font-size: 25px;
     line-height: 1.3;
-
     font-weight: 700;
-
     position: relative;
     z-index: 2;
 }
@@ -218,61 +151,41 @@ body {
 .care-cards {
     width: 100%;
     max-width: 1000px;
-
     margin: 0 auto;
-
     display: flex;
-
     justify-content: center;
     align-items: stretch;
-
     gap: 40px;
-
     position: relative;
     z-index: 2;
 }
 
-
-/* =========================================
-   CARD INDIVIDUAL
-========================================= */
-
 .care-card {
     width: 195px;
     height: 155px;
-
     background: #ff9418;
-
     border-radius: 15px;
-
     display: flex;
     flex-direction: column;
-
     align-items: center;
     justify-content: center;
-
     gap: 14px;
-
     box-sizing: border-box;
-
     transition: 0.2s;
 }
 
 .care-card svg {
     font-size: 52px;
-
     color: #000000;
 }
 
 .care-card span {
     color: #000000;
-
     font-size: 20px;
     font-weight: 500;
 }
 
 .care-card:hover {
     transform: translateY(-5px);
-
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
 }

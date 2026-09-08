@@ -4,15 +4,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { useState } from "react";
 import AccountSidebar from "./AccountSidebar";
 
-function Navbar({
-  onOpenLogin,
-  onOpenRegister,
-  onOpenProfile,
-  onOpenFamily,
-  onCreateFamily,
-  tutor,
-  onLogout
-}) {
+function Navbar({onOpenLogin, onOpenRegister, onOpenProfile, onOpenFamily, onCreateFamily, tutor, onLogout}) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (

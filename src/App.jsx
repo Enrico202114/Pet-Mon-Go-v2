@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
@@ -7,7 +6,6 @@ import Family from "./pages/Family";
 
 function App() {
 
-  // Recupera o tutor salvo quando a página é recarregada
   const tutorSalvo = localStorage.getItem("petmon_tutor");
 
   const [tela, setTela] = useState("home");
@@ -18,16 +16,10 @@ function App() {
 
   const [modoFamilia, setModoFamilia] = useState(null);
 
-
-  // ==========================================
-  // LOGIN
-  // ==========================================
-
   function handleLogin(tutorLogado) {
 
     setTutor(tutorLogado);
 
-    // Salva o tutor no navegador
     localStorage.setItem(
       "petmon_tutor",
       JSON.stringify(tutorLogado)
@@ -37,26 +29,16 @@ function App() {
   }
 
 
-  // ==========================================
-  // LOGOUT
-  // ==========================================
-
   function handleLogout() {
 
     setTutor(null);
 
-    // Remove o login salvo
     localStorage.removeItem("petmon_tutor");
 
     setModoFamilia(null);
 
     setTela("home");
   }
-
-
-  // ==========================================
-  // MINHA FAMÍLIA
-  // ==========================================
 
   function handleOpenFamily() {
 
@@ -65,22 +47,12 @@ function App() {
     setTela("family");
   }
 
-
-  // ==========================================
-  // CRIAR FAMÍLIA
-  // ==========================================
-
   function handleCreateFamily() {
 
     setModoFamilia("criar");
 
     setTela("family");
   }
-
-
-  // ==========================================
-  // PERFIL
-  // ==========================================
 
 if (tela === "profile") {
     return (
@@ -94,11 +66,6 @@ if (tela === "profile") {
         />
     );
 }
-
-
-  // ==========================================
-  // FAMÍLIA
-  // ==========================================
 
 if (tela === "family") {
   return (
@@ -117,11 +84,6 @@ if (tela === "family") {
   );
 }
 
-
-  // ==========================================
-  // LOGIN
-  // ==========================================
-
   if (tela === "login") {
 
     return (
@@ -133,11 +95,6 @@ if (tela === "family") {
 
   }
 
-
-  // ==========================================
-  // CADASTRO
-  // ==========================================
-
   if (tela === "register") {
 
     return (
@@ -148,11 +105,6 @@ if (tela === "family") {
     );
 
   }
-
-
-  // ==========================================
-  // HOME
-  // ==========================================
 
   return (
     <Home

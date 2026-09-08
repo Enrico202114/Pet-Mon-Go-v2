@@ -1,31 +1,9 @@
 import { useEffect, useState } from "react";
-
-import {
-  FaUsers,
-  FaUser,
-  FaKey,
-  FaSignOutAlt,
-  FaPlus,
-  FaSignInAlt,
-  FaCalendarAlt,
-  FaEnvelope,
-  FaPaw,
-  FaStore,
-  FaChevronRight,
-  FaPen,
-  FaArrowLeft
-} from "react-icons/fa";
-
+import {FaUsers, FaUser, FaKey, FaSignOutAlt, FaPlus, FaSignInAlt, FaCalendarAlt, FaEnvelope, FaPaw, FaStore, FaChevronRight, FaPen, FaArrowLeft} from "react-icons/fa";
 import logo from "../assets/logo.png";
-
 import "./Family.css";
 
-function Family({
-  tutor,
-  onBack,
-  onOpenProfile,
-  modoInicial = null
-}) {
+function Family({tutor, onBack, onOpenProfile, modoInicial = null}) {
 
   const [familia, setFamilia] = useState(null);
 
@@ -275,10 +253,6 @@ function Family({
 
     <div className="family-page">
 
-      {/* ==============================
-          NAVBAR
-      ============================== */}
-
       <header className="app-navbar">
 
         <div className="app-logo">
@@ -291,17 +265,7 @@ function Family({
 
       </header>
 
-
-      {/* ==============================
-          LAYOUT
-      ============================== */}
-
       <div className="family-layout">
-
-
-        {/* ==============================
-            SIDEBAR
-        ============================== */}
 
         <aside className="family-sidebar">
 
@@ -334,11 +298,6 @@ function Family({
 
         </aside>
 
-
-        {/* ==============================
-            CONTEÚDO
-        ============================== */}
-
         <main className="family-content">
 
           <div className="family-page-title">
@@ -367,16 +326,9 @@ function Family({
             </div>
           )}
 
-
-          {/* ==============================
-              POSSUI FAMÍLIA
-          ============================== */}
-
           {familia && (
 
             <>
-
-              {/* CARD PRINCIPAL */}
 
               <section className="family-hero-card">
 
@@ -417,13 +369,7 @@ function Family({
 
               </section>
 
-
-              {/* GRID INFERIOR */}
-
               <div className="family-bottom-grid">
-
-
-                {/* MEMBROS */}
 
                 <section className="family-members-card">
 
@@ -491,9 +437,6 @@ function Family({
 
                 </section>
 
-
-                {/* CARD LATERAL */}
-
                 <aside className="family-love-card">
 
                   <div className="love-icon">
@@ -517,9 +460,6 @@ function Family({
                 </aside>
 
               </div>
-
-
-              {/* INFORMAÇÕES DA FAMÍLIA */}
 
               <section className="family-info-row">
 
@@ -568,9 +508,6 @@ function Family({
 
               </section>
 
-
-              {/* SAIR */}
-
               <section className="family-leave-card">
 
                 <div>
@@ -598,11 +535,6 @@ function Family({
             </>
 
           )}
-
-
-          {/* ==============================
-              SEM FAMÍLIA
-          ============================== */}
 
           {!familia && !modo && (
 
@@ -652,11 +584,6 @@ function Family({
             </section>
 
           )}
-
-
-          {/* ==============================
-              CRIAR
-          ============================== */}
 
           {!familia && modo === "criar" && (
 
@@ -714,11 +641,6 @@ function Family({
             </section>
 
           )}
-
-
-          {/* ==============================
-              ENTRAR
-          ============================== */}
 
           {!familia && modo === "entrar" && (
 

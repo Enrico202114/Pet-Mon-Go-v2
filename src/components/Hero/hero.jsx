@@ -1,11 +1,5 @@
 import "./hero.css";
-import {
-    FaPaw,
-    FaSyringe,
-    FaBowlFood,
-    FaDog,
-    FaPills
-} from "react-icons/fa6";
+import {FaPaw, FaSyringe, FaBowlFood, FaDog, FaPills} from "react-icons/fa6";
 
 function Hero({ onOpenRegister }) {
     return (

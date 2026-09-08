@@ -1,28 +1,7 @@
 import "./AccountSidebar.css";
+import {FaTimes, FaSignInAlt, FaUserPlus, FaInfo, FaBell, FaUser, FaUsers, FaSignOutAlt, FaCog} from "react-icons/fa";
 
-import {
-  FaTimes,
-  FaSignInAlt,
-  FaUserPlus,
-  FaInfo,
-  FaBell,
-  FaUser,
-  FaUsers,
-  FaSignOutAlt,
-  FaCog
-} from "react-icons/fa";
-
-function AccountSidebar({
-  isOpen,
-  closeSidebar,
-  onOpenLogin,
-  onOpenRegister,
-  onOpenProfile,
-  onOpenFamily,
-  onCreateFamily,
-  tutor,
-  onLogout
-}) {
+function AccountSidebar({isOpen, closeSidebar, onOpenLogin, onOpenRegister, onOpenProfile, onOpenFamily, onCreateFamily, tutor, onLogout}) {
   return (
     <>
       <div
