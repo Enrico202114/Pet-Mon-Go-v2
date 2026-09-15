@@ -16,6 +16,11 @@ function App() {
 
   const [modoFamilia, setModoFamilia] = useState(null);
 
+
+  // =========================
+  // LOGIN
+  // =========================
+
   function handleLogin(tutorLogado) {
 
     setTutor(tutorLogado);
@@ -29,6 +34,10 @@ function App() {
   }
 
 
+  // =========================
+  // LOGOUT
+  // =========================
+
   function handleLogout() {
 
     setTutor(null);
@@ -40,12 +49,22 @@ function App() {
     setTela("home");
   }
 
+
+  // =========================
+  // ABRIR FAMÍLIA
+  // =========================
+
   function handleOpenFamily() {
 
     setModoFamilia(null);
 
     setTela("family");
   }
+
+
+  // =========================
+  // CRIAR FAMÍLIA
+  // =========================
 
   function handleCreateFamily() {
 
@@ -54,36 +73,73 @@ function App() {
     setTela("family");
   }
 
-if (tela === "profile") {
-    return (
-          <Profile
-              tutor={tutor}
-              onBack={() => setTela("home")}
-              onOpenFamily={() => {
-                  setModoFamilia(null);
-                  setTela("family");
-              }}
-              onAccountDeleted={handleLogout}
-          />
-    );
-}
 
-if (tela === "family") {
-  return (
-    <Family
-      tutor={tutor}
-      modoInicial={modoFamilia}
-      onBack={() => {
-        setModoFamilia(null);
-        setTela("home");
-      }}
-      onOpenProfile={() => {
-        setModoFamilia(null);
-        setTela("profile");
-      }}
-    />
-  );
-}
+  // =========================
+  // PERFIL
+  // =========================
+
+  if (tela === "profile") {
+
+    return (
+      <Profile
+        tutor={tutor}
+
+        // Voltar para Home
+        onHome={() => {
+          setTela("home");
+        }}
+
+        // Abrir Minha Família
+        onMinhaFamilia={() => {
+          setModoFamilia(null);
+          setTela("family");
+        }}
+
+        // Abrir Criar Família
+        onCriarFamilia={() => {
+          setModoFamilia("criar");
+          setTela("family");
+        }}
+
+        // Sair da conta
+        onLogout={handleLogout}
+
+        // Excluir conta
+        onAccountDeleted={handleLogout}
+      />
+    );
+  }
+
+
+  // =========================
+  // FAMÍLIA
+  // =========================
+
+  if (tela === "family") {
+
+    return (
+      <Family
+        tutor={tutor}
+
+        modoInicial={modoFamilia}
+
+        onBack={() => {
+          setModoFamilia(null);
+          setTela("home");
+        }}
+
+        onOpenProfile={() => {
+          setModoFamilia(null);
+          setTela("profile");
+        }}
+      />
+    );
+  }
+
+
+  // =========================
+  // LOGIN
+  // =========================
 
   if (tela === "login") {
 
@@ -93,8 +149,12 @@ if (tela === "family") {
         onLogin={handleLogin}
       />
     );
-
   }
+
+
+  // =========================
+  // CADASTRO
+  // =========================
 
   if (tela === "register") {
 
@@ -104,20 +164,24 @@ if (tela === "family") {
         onLogin={handleLogin}
       />
     );
-
   }
+
+
+  // =========================
+  // HOME
+  // =========================
 
   return (
     <Home
       onOpenLogin={() => setTela("login")}
 
-      onOpenRegister={() =>
-        setTela("register")
-      }
+      onOpenRegister={() => {
+        setTela("register");
+      }}
 
-      onOpenProfile={() =>
-        setTela("profile")
-      }
+      onOpenProfile={() => {
+        setTela("profile");
+      }}
 
       onOpenFamily={handleOpenFamily}
 
