@@ -3,14 +3,23 @@ import Hero from "../components/Hero/hero";
 import {FaCalendarAlt, FaBell, FaClipboardList, FaHeart, FaArrowRight, FaPaw} from "react-icons/fa";
 import "./Home.css";
 
-function Home({onOpenLogin, onOpenRegister, onOpenProfile, tutor, onLogout, onOpenFamily, onCreateFamily}) {
-  return (
+function Home({
+  onOpenLogin,
+  onOpenRegister,
+  onOpenProfile,
+  onOpenDashboard,
+  tutor,
+  onLogout,
+  onOpenFamily,
+  onCreateFamily,
+}) {  return (
     <div className="home-page">
 
       <Navbar
         onOpenLogin={onOpenLogin}
         onOpenRegister={onOpenRegister}
         onOpenProfile={onOpenProfile}
+        onOpenDashboard={onOpenDashboard}
         onOpenFamily={onOpenFamily}
         onCreateFamily={onCreateFamily}
         tutor={tutor}

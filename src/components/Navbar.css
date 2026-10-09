@@ -1,69 +1,147 @@
+
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
 }
 
 .navbar {
-    width: 90%;
-    max-width: 1400px;
-    height: 60px;
-    margin: 5px auto;
-    background: #ffffff;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 35px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.70);
+  width: 90%;
+  max-width: 1400px;
+  height: 60px;
+  margin: 5px auto;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 35px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 20;
+}
+
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 .navbar-logo img {
-    width: 60px;
-    cursor: pointer;
+  display: block;
+  width: 60px;
+  height: auto;
 }
 
 .navbar-links {
-    display: flex;
-    align-items: center;
-    gap: 45px;
-    list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 45px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .navbar-links li {
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .navbar-links li:hover {
-    color: #f59048;
-    transform: translateY(-4px);
-    border-bottom: 2px solid #f59048;
+  transform: translateY(-2px);
+}
+
+.navbar-links a,
+.navbar-links button {
+  display: inline-block;
+  padding: 5px 0;
+  border: none;
+  background: transparent;
+  color: #123b86;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.navbar-links a:hover,
+.navbar-links button:hover {
+  color: #f59048;
 }
 
 .navbar-account {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border: none;
-    background: #f59048;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background: #f59048;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
 .navbar-account:hover {
-    transform: translateY(-4px);
-    color: black;
+  transform: translateY(-3px);
+  color: #ffffff;
+  background: #e98238;
 }
 
 .navbar-account svg {
-    font-size: 20px;
+  font-size: 20px;
+}
+
+@media (max-width: 800px) {
+  .navbar {
+    width: 94%;
+    padding: 0 15px;
+  }
+
+  .navbar-links {
+    gap: 18px;
+  }
+
+  .navbar-links li {
+    font-size: 14px;
+  }
+
+  .navbar-account {
+    padding: 9px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 560px) {
+  .navbar {
+    height: auto;
+    min-height: 60px;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 10px 14px;
+  }
+
+  .navbar-logo img {
+    width: 48px;
+  }
+
+  .navbar-links {
+    order: 3;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 18px;
+  }
+
+  .navbar-links li {
+    font-size: 13px;
+  }
 }

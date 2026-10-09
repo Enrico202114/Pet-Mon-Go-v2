@@ -1,0 +1,116 @@
+
+.cadastro-pet-page {
+  min-height: 100vh;
+  padding: 40px 20px;
+  background: #f5f5f7;
+}
+
+.cadastro-pet-container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 32px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(18, 59, 134, 0.08);
+}
+
+.cadastro-pet-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  color: #123b86;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.cadastro-pet-header {
+  margin: 24px 0;
+  text-align: center;
+}
+
+.cadastro-pet-icon {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  border-radius: 18px;
+  background: #fff0dc;
+  color: #ff9418;
+  font-size: 28px;
+}
+
+.cadastro-pet-header h1 {
+  margin: 0 0 10px;
+  color: #123b86;
+}
+
+.cadastro-pet-header p {
+  margin: 0;
+  color: #667085;
+}
+
+.cadastro-pet-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cadastro-pet-form label {
+  margin-top: 8px;
+  color: #253858;
+  font-weight: 600;
+}
+
+.cadastro-pet-form input,
+.cadastro-pet-form select {
+  width: 100%;
+  min-height: 46px;
+  padding: 12px;
+  border: 1px solid #d8deea;
+  border-radius: 10px;
+  background: #fff;
+  color: #253858;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.cadastro-pet-form input:focus,
+.cadastro-pet-form select:focus {
+  outline: 2px solid #b8d0ff;
+  border-color: #2478d8;
+}
+
+.cadastro-pet-save {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 12px;
+  background: #ff9418;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cadastro-pet-save:hover {
+  background: #ed8008;
+}
+
+@media (max-width: 600px) {
+  .cadastro-pet-container {
+    padding: 22px;
+  }
+
+  .cadastro-pet-page {
+    padding: 20px 12px;
+  }
+}
+

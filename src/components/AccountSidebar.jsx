@@ -1,122 +1,150 @@
-import "./AccountSidebar.css";
-import {FaTimes, FaSignInAlt, FaUserPlus, FaInfo, FaBell, FaUser, FaUsers, FaSignOutAlt, FaCog} from "react-icons/fa";
 
-function AccountSidebar({isOpen, closeSidebar, onOpenLogin, onOpenRegister, onOpenProfile, onOpenFamily, onCreateFamily, tutor, onLogout}) {
+import "./AccountSidebar.css";
+import {
+  FaTimes,
+  FaSignInAlt,
+  FaUserPlus,
+  FaInfo,
+  FaBell,
+  FaUser,
+  FaUsers,
+  FaSignOutAlt,
+  FaCog,
+  FaHome,
+} from "react-icons/fa";
+
+function AccountSidebar({
+  isOpen,
+  closeSidebar,
+  onOpenLogin,
+  onOpenRegister,
+  onOpenProfile,
+  onOpenDashboard,
+  onOpenFamily,
+  onCreateFamily,
+  tutor,
+  onLogout,
+}) {
+  function executarAcao(acao) {
+    closeSidebar?.();
+    acao?.();
+  }
+
   return (
     <>
       <div
         className={`overlay ${isOpen ? "show" : ""}`}
         onClick={closeSidebar}
-      ></div>
+      />
 
-      <aside className={`account-sidebar ${isOpen ? "open" : ""}`}>
-
+      <aside
+        className={`account-sidebar ${isOpen ? "open" : ""}`}
+        aria-hidden={!isOpen}
+      >
         <div className="sidebar-header">
           <h2>Conta</h2>
 
-          <button onClick={closeSidebar}>
+          <button
+            type="button"
+            onClick={closeSidebar}
+            aria-label="Fechar menu"
+          >
             <FaTimes />
           </button>
         </div>
 
         <div className="sidebar-content">
-
-          {tutor && (
+          {tutor ? (
             <>
               <div className="sidebar-user">
-
                 <div className="sidebar-user-icon">
                   <FaUser />
                 </div>
 
                 <div>
-                  <h3>Olá, {tutor.nometutor}!</h3>
-                  <p>{tutor.emailtutor}</p>
+                  <h3>Olá, {tutor.nometutor || tutor.nome || "Tutor"}!</h3>
+                  <p>{tutor.emailtutor || tutor.email || ""}</p>
                 </div>
-
               </div>
 
               <button
+                type="button"
                 className="sidebar-btn"
-                onClick={() => {
-                  closeSidebar();
-                  onOpenProfile();
-                }}
+                onClick={() => executarAcao(onOpenDashboard)}
+              >
+                <FaHome />
+                Meu Painel
+              </button>
+
+              <button
+                type="button"
+                className="sidebar-btn"
+                onClick={() => executarAcao(onOpenProfile)}
               >
                 <FaUser />
                 Meu Perfil
               </button>
 
               <button
+                type="button"
                 className="sidebar-btn"
-                onClick={() => {
-                  closeSidebar();
-                  onOpenFamily();
-                }}
+                onClick={() => executarAcao(onOpenFamily)}
               >
                 <FaUsers />
                 Minha Família
               </button>
 
               <button
+                type="button"
                 className="sidebar-btn"
-                onClick={() => {
-                  closeSidebar();
-                  onCreateFamily();
-                }}
+                onClick={() => executarAcao(onCreateFamily)}
               >
                 <FaUsers />
                 Criar Família
               </button>
 
               <button
+                type="button"
                 className="sidebar-btn"
-                onClick={() => {
-                  closeSidebar();
-                  onOpenFamily();
-                }}
+                onClick={() => executarAcao(onOpenFamily)}
               >
                 <FaSignOutAlt />
                 Sair da Família
               </button>
 
-              <button className="sidebar-btn">
+              <button
+                type="button"
+                className="sidebar-btn"
+                onClick={() => executarAcao(onOpenProfile)}
+              >
                 <FaCog />
                 Configurações
               </button>
 
               <button
+                type="button"
                 className="sidebar-btn logout-btn"
-                onClick={() => {
-                  closeSidebar();
-                  onLogout();
-                }}
+                onClick={() => executarAcao(onLogout)}
               >
                 <FaSignOutAlt />
                 Sair da Conta
               </button>
             </>
-          )}
-
-          {!tutor && (
+          ) : (
             <>
               <button
+                type="button"
                 className="sidebar-btn"
-                onClick={() => {
-                  closeSidebar();
-                  onOpenLogin();
-                }}
+                onClick={() => executarAcao(onOpenLogin)}
               >
                 <FaSignInAlt />
                 Entrar
               </button>
 
               <button
+                type="button"
                 className="sidebar-btn"
-                onClick={() => {
-                  closeSidebar();
-                  onOpenRegister();
-                }}
+                onClick={() => executarAcao(onOpenRegister)}
               >
                 <FaUserPlus />
                 Criar Conta
@@ -124,18 +152,16 @@ function AccountSidebar({isOpen, closeSidebar, onOpenLogin, onOpenRegister, onOp
             </>
           )}
 
-          <button className="sidebar-btn">
+          <button type="button" className="sidebar-btn">
             <FaInfo />
             Sobre o Pet Mon Go
           </button>
 
-          <button className="sidebar-btn">
+          <button type="button" className="sidebar-btn">
             <FaBell />
             Configurações de Notificações
           </button>
-
         </div>
-
       </aside>
     </>
   );

@@ -1,5 +1,13 @@
 import "./hero.css";
-import {FaPaw, FaSyringe, FaBowlFood, FaDog, FaPills} from "react-icons/fa6";
+import {
+    FaPaw,
+    FaSyringe,
+    FaBowlFood,
+    FaDog,
+    FaPills
+} from "react-icons/fa6";
+
+import onda from "../../assets/onda.png"
 
 function Hero({ onOpenRegister }) {
     return (
@@ -52,9 +60,11 @@ function Hero({ onOpenRegister }) {
 
             <section className="care-section">
 
-                <h2>
-                    Você já esqueceu algum cuidado importante com seu pet?
-                </h2>
+                <div className="care-title">
+                    <h2>
+                        Você já esqueceu algum cuidado importante com seu pet?
+                    </h2>
+                </div>
 
                 <div className="care-cards">
 
@@ -78,6 +88,11 @@ function Hero({ onOpenRegister }) {
                         <span>Medicação</span>
                     </div>
 
+                </div>
+
+                {/* Continuação da onda */}
+                <div className="care-wave">
+                    <img src={onda} alt="" />
                 </div>
 
             </section>
