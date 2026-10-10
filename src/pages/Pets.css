@@ -1,8 +1,16 @@
 .pets-page {
     min-height: 100vh;
-    padding: 50px 5%;
+    padding: 0;
     background: #f3f7fc;
     color: #173f75;
+    box-sizing: border-box;
+}
+
+.pets-page .pets-container {
+    width: 100%;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 50px 5%;
     box-sizing: border-box;
 }
 

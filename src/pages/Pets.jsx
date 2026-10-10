@@ -8,151 +8,182 @@ import {
     FaWeight
 } from "react-icons/fa";
 
+import DashboardSidebar from "../components/DashboardSidebar";
 import "./Pets.css";
+import "./Dashboard.css";
 
 function Pets({
     pets = [],
     onAddPet,
-    onOpenPet
+    onOpenPet,
+    onHome,
+    onOpenProfile,
+    onPets,
+    onFamily,
+    onSettings,
+    onLogout
 }) {
 
     return (
-        <main className="pets-page">
+        <div className="dashboard">
 
-            <section className="pets-container">
+            <DashboardSidebar
+                paginaAtiva="pets"
+                onHome={onHome}
+                onOpenProfile={onOpenProfile}
+                onPets={onPets}
+                onFamily={onFamily}
+                onSettings={onSettings}
+                onLogout={onLogout}
+            />
 
-                <div className="pets-header">
+            <main className="dashboard-main pets-page">
 
-                    <div>
-                        <span className="pets-eyebrow">
-                            Pet Mon Go
-                        </span>
+                <section className="pets-container">
 
-                        <h1>Meus Pets</h1>
+                    <div className="pets-header">
 
-                        <p>
-                            Tenha todas as informações dos seus pets
-                            organizadas em um só lugar.
-                        </p>
-                    </div>
+                        <div>
+                            <span className="pets-eyebrow">
+                                Pet Mon Go
+                            </span>
 
-                    <button
-                        className="add-pet-button"
-                        onClick={onAddPet}
-                    >
-                        <FaPlus />
-                        Adicionar pet
-                    </button>
+                            <h1>Meus Pets</h1>
 
-                </div>
-
-                {pets.length === 0 ? (
-
-                    <div className="pets-empty">
-
-                        <div className="empty-paw">
-                            <FaPaw />
+                            <p>
+                                Tenha todas as informações dos seus pets
+                                organizadas em um só lugar.
+                            </p>
                         </div>
 
-                        <h2>Nenhum pet cadastrado</h2>
-
-                        <p>
-                            Cadastre seu primeiro pet para começar
-                            a organizar os cuidados dele.
-                        </p>
-
                         <button
-                            className="empty-add-button"
+                            className="add-pet-button"
                             onClick={onAddPet}
                         >
                             <FaPlus />
-                            Cadastrar meu pet
+                            Adicionar pet
                         </button>
 
                     </div>
 
-                ) : (
+                    {pets.length === 0 ? (
 
-                    <div className="pets-grid">
+                        <div className="pets-empty">
 
-                        {pets.map((pet) => (
+                            <div className="empty-paw">
+                                <FaPaw />
+                            </div>
 
-                            <article
-                                className="pet-card"
-                                key={pet.id || pet.idpet}
-                                onClick={() => onOpenPet?.(pet)}
+                            <h2>Nenhum pet cadastrado</h2>
+
+                            <p>
+                                Cadastre seu primeiro pet para começar
+                                a organizar os cuidados dele.
+                            </p>
+
+                            <button
+                                className="empty-add-button"
+                                onClick={onAddPet}
                             >
+                                <FaPlus />
+                                Cadastrar meu pet
+                            </button>
 
-                                <div className="pet-photo">
+                        </div>
 
-                                    {pet.foto ? (
-                                        <img
-                                            src={pet.foto}
-                                            alt={pet.nome}
-                                        />
-                                    ) : (
-                                        <FaPaw />
-                                    )}
+                    ) : (
 
-                                </div>
+                        <div className="pets-grid">
 
-                                <div className="pet-info">
+                            {pets.map((pet) => (
 
-                                    <div className="pet-name">
+                                <article
+                                    className="pet-card"
+                                    key={pet.id || pet.idpet}
+                                    onClick={() => onOpenPet?.(pet)}
+                                >
 
-                                        <div>
-                                            <h2>{pet.nome}</h2>
+                                    <div className="pet-photo">
 
-                                            <span>
-                                                {pet.especie || "Pet"}
-                                            </span>
-                                            {pet.raca && <small>{pet.raca}</small>}
-                                        </div>
+                                        {pet.foto ? (
+                                            <img
+                                                src={pet.foto}
+                                                alt={pet.nome}
+                                            />
+                                        ) : (
+                                            <FaPaw />
+                                        )}
 
-                                        {pet.especie === "Gato" ? (
-                                            <FaCat />
+                                    </div>
+
+                                    <div className="pet-info">
+
+                                        <div className="pet-name">
+
+                                            <div>
+                                                <h2>{pet.nome}</h2>
+
+                                                <span>
+                                                    {pet.especie || "Pet"}
+                                                </span>
+
+                                                {pet.raca && (
+                                                    <small>{pet.raca}</small>
+                                                )}
+                                            </div>
+
+                                            {pet.especie === "Gato" ? (
+                                                <FaCat />
                                             ) : (
-                                            <FaDog />
+                                                <FaDog />
                                             )}
 
+                                        </div>
+
+                                        <div className="pet-details">
+
+                                            <span>
+                                                <FaVenusMars />
+                                                {pet.sexo || "Não informado"}
+                                            </span>
+
+                                            <span>
+                                                <FaCalendarAlt />
+                                                {pet.idade || "Idade não informada"}
+                                            </span>
+
+                                            <span>
+                                                <FaWeight />
+                                                {pet.peso || "Peso não informado"}
+                                            </span>
+
+                                        </div>
+
+                                        <button
+                                            className="pet-view-button"
+                                            onClick={(event) => {
+                                                event.stopPropagation();
+                                                onOpenPet?.(pet);
+                                            }}
+                                        >
+                                            Ver perfil
+                                        </button>
+
                                     </div>
 
-                                    <div className="pet-details">
+                                </article>
 
-                                        <span>
-                                            <FaVenusMars />
-                                            {pet.sexo || "Não informado"}
-                                        </span>
+                            ))}
 
-                                        <span>
-                                            <FaCalendarAlt />
-                                            {pet.idade || "Idade não informada"}
-                                        </span>
+                        </div>
 
-                                        <span>
-                                            <FaWeight />
-                                            {pet.peso || "Peso não informado"}
-                                        </span>
+                    )}
 
-                                    </div>
+                </section>
 
-                                    <button className="pet-view-button">
-                                        Ver perfil
-                                    </button>
+            </main>
 
-                                </div>
-
-                            </article>
-
-                        ))}
-
-                    </div>
-
-                )}
-
-            </section>
-
-        </main>
+        </div>
     );
 }
 

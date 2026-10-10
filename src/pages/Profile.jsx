@@ -7,65 +7,45 @@ import {
     FaCog,
     FaSignOutAlt,
     FaEnvelope,
-    FaLock,
     FaEdit,
     FaShieldAlt,
-    FaClipboardList,
-    FaLightbulb,
     FaHeart,
-    FaClock,
-    FaCalendarCheck,
     FaTrashAlt,
-    FaSyringe,
-    FaUtensils,
-    FaWalking,
-    FaPills
+    FaChevronRight,
+    FaInfoCircle,
 } from "react-icons/fa";
 
 import logo from "../assets/logo.png";
 import "./Profile.css";
 
 function Profile({
+    tutor,
+    pets = [],
     onHome,
     onMinhaFamilia,
     onCriarFamilia,
     onSairFamilia,
+    onOpenPets,
+    onOpenSettings,
     onLogout,
-    onAccountDeleted
+    onAccountDeleted,
 }) {
+    const nomeTutor =
+        tutor?.nometutor ||
+        tutor?.nome ||
+        tutor?.nomeTutor ||
+        "Tutor";
 
-    const handleHome = () => {
-        if (onHome) {
-            onHome();
-        }
-    };
+    const emailTutor =
+        tutor?.emailtutor ||
+        tutor?.email ||
+        tutor?.emailTutor ||
+        "E-mail não informado";
 
-    const handleMinhaFamilia = () => {
-        if (onMinhaFamilia) {
-            onMinhaFamilia();
-        }
-    };
-
-    const handleCriarFamilia = () => {
-        if (onCriarFamilia) {
-            onCriarFamilia();
-        }
-    };
-
-    const handleLogout = () => {
-        console.log("Saindo da Conta");
-
-        if (onLogout) {
-            onLogout();
-        }
-    };
+    const quantidadePets = pets.length;
 
     const handleEditar = () => {
-        alert("Área de edição do perfil.");
-    };
-
-    const handleAlterarSenha = () => {
-        alert("Área para alteração de senha.");
+        alert("A edição do perfil será implementada na próxima etapa.");
     };
 
     const handleExcluirConta = () => {
@@ -74,655 +54,295 @@ function Profile({
         );
 
         if (confirmar) {
-            alert("A exclusão da conta será realizada posteriormente.");
+            if (onAccountDeleted) {
+                onAccountDeleted();
+            } else {
+                alert(
+                    "A exclusão da conta precisa ser conectada ao backend."
+                );
+            }
         }
     };
 
+    const handleMinhaFamilia = () => {
+        if (onMinhaFamilia) onMinhaFamilia();
+    };
+
+    const handleCriarFamilia = () => {
+        if (onCriarFamilia) {
+            onCriarFamilia();
+        } else if (onMinhaFamilia) {
+            onMinhaFamilia();
+        }
+    };
+
+    const cards = [
+        {
+            titulo: "Dados do Perfil",
+            descricao: "Visualize e edite suas informações pessoais.",
+            icone: <FaUser />,
+            classe: "green",
+            acao: handleEditar,
+        },
+        {
+            titulo: "Info da Conta",
+            descricao: "Veja seus dados, e-mail e informações da conta.",
+            icone: <FaInfoCircle />,
+            classe: "gold",
+            acao: handleEditar,
+        },
+        {
+            titulo: "Segurança",
+            descricao: "Cuide da proteção e da segurança da sua conta.",
+            icone: <FaShieldAlt />,
+            classe: "blue",
+            acao: () =>
+                alert("A alteração de senha será implementada na próxima etapa."),
+        },
+        {
+            titulo: "Pet Mon Go",
+            descricao: `${quantidadePets} pet(s) cadastrado(s). Acesse seus animais.`,
+            icone: <FaPaw />,
+            classe: "green-dark",
+            acao: () => {
+                if (onOpenPets) onOpenPets();
+            },
+        },
+        {
+            titulo: "Família",
+            descricao: "Compartilhe os cuidados dos seus pets.",
+            icone: <FaUsers />,
+            classe: "gold",
+            acao: handleMinhaFamilia,
+        },
+        {
+            titulo: "Excluir Conta",
+            descricao: "Remova sua conta permanentemente.",
+            icone: <FaTrashAlt />,
+            classe: "danger",
+            acao: handleExcluirConta,
+        },
+    ];
+
     return (
         <div className="profile-page">
+            <header className="profile-topbar">
+                <button
+                    className="profile-mobile-menu"
+                    onClick={onHome}
+                    aria-label="Ir para o início"
+                >
+                    <FaHome />
+                </button>
 
-            {/* =========================
-                BARRA SUPERIOR
-            ========================= */}
-            <header className="app-navbar">
+                <div className="profile-topbar-user">
+                    <div className="topbar-avatar">
+                        <FaUser />
+                    </div>
+                    <span>{nomeTutor}</span>
+                </div>
+            </header>
 
-                <div className="app-logo">
+            <aside className="profile-sidebar">
+                <div className="profile-logo">
                     <img src={logo} alt="Pet Mon Go" />
                 </div>
 
-                <div className="app-user">
-                    <div className="app-user-avatar">
-                        <FaUser />
-                    </div>
-
-                    <span>Enrico</span>
-                </div>
-
-            </header>
-
-
-            {/* =========================
-                LAYOUT PRINCIPAL
-            ========================= */}
-            <div className="profile-layout">
-
-                {/* =========================
-                    MENU LATERAL
-                ========================= */}
-                <aside className="profile-sidebar">
-
+                <nav className="profile-navigation">
                     <button
-                        className="profile-sidebar-item"
-                        onClick={handleHome}
+                        className="profile-nav-item"
+                        onClick={onHome}
                     >
                         <FaHome />
                         <span>Início</span>
                     </button>
 
                     <button
-                        className="profile-sidebar-item active"
+                        className="profile-nav-item active"
+                        aria-current="page"
                     >
                         <FaUser />
                         <span>Meu Perfil</span>
                     </button>
 
                     <button
-                        className="profile-sidebar-item"
+                        className="profile-nav-item"
                         onClick={handleMinhaFamilia}
                     >
                         <FaUsers />
-                        <span>Minha Família</span>
+                        <span>Família</span>
                     </button>
 
                     <button
-                        className="profile-sidebar-item"
-                        onClick={handleCriarFamilia}
+                        className="profile-nav-item"
+                        onClick={() => {
+                            if (onOpenPets) onOpenPets();
+                        }}
                     >
-                        <FaUsers />
-                        <span>Criar Família</span>
-                    </button>
-
-                    <button className="profile-sidebar-item">
                         <FaPaw />
-                        <span>Meus Pets</span>
+                        <span>Pets</span>
                     </button>
 
-                    <button className="profile-sidebar-item">
+                    <button
+                        className="profile-nav-item"
+                        onClick={() => {
+                            if (onOpenSettings) onOpenSettings();
+                        }}
+                    >
                         <FaCog />
                         <span>Configurações</span>
                     </button>
 
-
                     <button
-                        className="profile-sidebar-logout"
-                        onClick={handleLogout}
+                        className="profile-nav-item profile-nav-logout"
+                        onClick={() => {
+                            if (onLogout) onLogout();
+                        }}
                     >
                         <FaSignOutAlt />
                         <span>Sair</span>
                     </button>
+                </nav>
 
-                </aside>
+                <div className="profile-sidebar-decoration">
+                    <FaPaw />
+                    <FaHeart />
+                </div>
+            </aside>
 
-
-                {/* =========================
-                    CONTEÚDO
-                ========================= */}
-                <main className="profile-content">
-
-                    {/* TÍTULO */}
-                    <div className="profile-page-title">
-                        <h1>Meu Perfil</h1>
-
+            <main className="profile-content">
+                <div className="profile-heading">
+                    <div className="profile-heading-icon">
+                        <FaCog />
+                    </div>
+                    <div>
+                        <h1>Perfil</h1>
                         <p>
-                            Gerencie suas informações e acompanhe sua
-                            experiência no Pet Mon Go.
+                            Gerencie suas informações e configurações da sua conta.
                         </p>
                     </div>
+                </div>
 
-
-                    {/* =========================
-                        PERFIL PRINCIPAL
-                    ========================= */}
-                    <section className="profile-hero-card">
-
-                        <div className="profile-main">
-
-                            <div className="profile-avatar">
-
-                                <div className="profile-avatar-icon">
-                                    <FaUser />
-                                </div>
-
-                                <button
-                                    className="avatar-edit"
-                                    title="Alterar foto"
-                                >
-                                    <FaEdit />
-                                </button>
-
-                            </div>
-
-
-                            <div className="profile-identity">
-
-                                <h2>Enrico</h2>
-
-                                <p>Tutor Pet Mon Go</p>
-
-                                <span>
-                                    <FaEnvelope />
-                                    &nbsp; enrico@email.com
-                                </span>
-
-                            </div>
-
-
-                            <button
-                                className="profile-edit-btn"
-                                onClick={handleEditar}
-                            >
-                                <FaEdit />
-                                &nbsp; Editar
-                            </button>
-
-                        </div>
-
-                    </section>
-
-
-                    {/* =========================
-                        INFORMAÇÕES DA CONTA
-                    ========================= */}
-                    <section className="profile-section">
-
-                        <div className="section-title">
-
-                            <div className="section-title-icon">
+                <section className="profile-hero-card">
+                    <div className="profile-hero-top">
+                        <div className="profile-avatar">
+                            <div className="profile-avatar-icon">
                                 <FaUser />
                             </div>
 
-                            <div>
-                                <h3>Informações da conta</h3>
-
-                                <p>
-                                    Dados utilizados no seu perfil.
-                                </p>
-                            </div>
-
+                            <button
+                                className="avatar-edit"
+                                title="Alterar foto"
+                                aria-label="Alterar foto do perfil"
+                                onClick={() =>
+                                    alert(
+                                        "A alteração da foto será implementada posteriormente."
+                                    )
+                                }
+                            >
+                                <FaEdit />
+                            </button>
                         </div>
 
-
-                        <div className="profile-info-grid">
-
-                            <div className="profile-info">
-                                <span>Nome</span>
-                                <strong>Enrico</strong>
-                            </div>
-
-                            <div className="profile-info">
-                                <span>E-mail</span>
-                                <strong>enrico@email.com</strong>
-                            </div>
-
-                            <div className="profile-info">
-                                <span>Tipo de conta</span>
-                                <strong>Tutor</strong>
-                            </div>
-
-                            <div className="profile-info">
-                                <span>Status</span>
-                                <strong className="status-active">
-                                    Conta ativa
-                                </strong>
-                            </div>
-
+                        <div className="profile-identity">
+                            <h2>{nomeTutor}</h2>
+                            <p>
+                                <FaEnvelope />
+                                <span>{emailTutor}</span>
+                            </p>
+                            <span className="profile-status">
+                                <span className="status-dot" />
+                                Conta ativa
+                            </span>
                         </div>
 
-                    </section>
-
-
-                    {/* =========================
-                        SEGURANÇA + ESTATÍSTICAS
-                    ========================= */}
-                    <div className="profile-columns">
-
-
-                        {/* SEGURANÇA */}
-                        <section className="profile-section">
-
-                            <div className="section-title">
-
-                                <div className="section-title-icon">
-                                    <FaShieldAlt />
-                                </div>
-
-                                <div>
-                                    <h3>Segurança da conta</h3>
-
-                                    <p>
-                                        Proteja seus dados.
-                                    </p>
-                                </div>
-
-                            </div>
-
-
-                            <div className="security-card">
-
-                                <div className="security-icon">
-                                    <FaLock />
-                                </div>
-
-                                <div className="security-info">
-
-                                    <strong>Senha</strong>
-
-                                    <span>
-                                        Sua senha está protegida.
-                                    </span>
-
-                                </div>
-
-                                <button
-                                    className="security-change-btn"
-                                    onClick={handleAlterarSenha}
-                                >
-                                    Alterar senha
-                                </button>
-
-                            </div>
-
-                        </section>
-
-
-                        {/* ESTATÍSTICAS */}
-                        <section className="profile-section">
-
-                            <div className="section-title">
-
-                                <div className="section-title-icon">
-                                    <FaPaw />
-                                </div>
-
-                                <div>
-                                    <h3>Pet Mon Go</h3>
-
-                                    <p>
-                                        Resumo da sua conta.
-                                    </p>
-                                </div>
-
-                            </div>
-
-
-                            <div className="profile-stats">
-
-                                <div className="profile-stat">
-
-                                    <div className="stat-icon">
-                                        <FaPaw />
-                                    </div>
-
-                                    <div>
-                                        <strong>0</strong>
-                                        <span>Pets cadastrados</span>
-                                    </div>
-
-                                </div>
-
-
-                                <div className="profile-stat">
-
-                                    <div className="stat-icon">
-                                        <FaUsers />
-                                    </div>
-
-                                    <div>
-                                        <strong>0</strong>
-                                        <span>Famílias</span>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-                        </section>
-
+                        <FaPaw className="profile-hero-paw" />
                     </div>
 
-
-                    {/* =========================
-                        ATIVIDADES
-                    ========================= */}
-                    <section className="profile-section">
-
-                        <div className="section-title">
-
-                            <div className="section-title-icon">
-                                <FaClipboardList />
-                            </div>
-
+                    <div className="profile-hero-details">
+                        <div className="hero-detail">
+                            <FaUser />
                             <div>
-                                <h3>Atividades recentes</h3>
-
-                                <p>
-                                    Acompanhe as principais ações da sua conta.
-                                </p>
+                                <span>Nome completo</span>
+                                <strong>{nomeTutor}</strong>
                             </div>
-
                         </div>
 
-
-                        <div className="activity-grid">
-
-                            <div className="activity-item">
-
-                                <div className="activity-icon">
-                                    <FaClock />
-                                </div>
-
-                                <div>
-                                    <strong>Último acesso</strong>
-
-                                    <span>
-                                        Acesso realizado recentemente.
-                                    </span>
-                                </div>
-
-                            </div>
-
-
-                            <div className="activity-item">
-
-                                <div className="activity-icon">
-                                    <FaCalendarCheck />
-                                </div>
-
-                                <div>
-                                    <strong>Rotinas</strong>
-
-                                    <span>
-                                        Organize os cuidados do seu pet.
-                                    </span>
-                                </div>
-
-                            </div>
-
-
-                            <div className="activity-item">
-
-                                <div className="activity-icon">
-                                    <FaPaw />
-                                </div>
-
-                                <div>
-                                    <strong>Pets cadastrados</strong>
-
-                                    <span>
-                                        Você ainda não possui pets cadastrados.
-                                    </span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-                    {/* =========================
-                        DICAS PET MON GO
-                    ========================= */}
-                    <section className="profile-section tips-section">
-
-                        <div className="section-title">
-
-                            <div className="section-title-icon">
-                                <FaLightbulb />
-                            </div>
-
+                        <div className="hero-detail">
+                            <FaEnvelope />
                             <div>
-                                <h3>Dicas Pet Mon Go</h3>
-
-                                <p>
-                                    Pequenos cuidados fazem diferença.
-                                </p>
+                                <span>E-mail</span>
+                                <strong>{emailTutor}</strong>
                             </div>
-
                         </div>
 
-
-                        <div className="tip-card">
-
-                            <div className="tip-icon">
-                                <FaHeart />
-                            </div>
-
+                        <div className="hero-detail">
+                            <FaPaw />
                             <div>
-                                <strong>
-                                    Mantenha os cuidados organizados
-                                </strong>
-
-                                <p>
-                                    Registre vacinas, alimentação,
-                                    passeios, medicações e consultas
-                                    veterinárias para acompanhar a rotina
-                                    do seu pet.
-                                </p>
+                                <span>Pets cadastrados</span>
+                                <strong>{quantidadePets}</strong>
                             </div>
-
                         </div>
+                    </div>
+                </section>
 
-                    </section>
-
-
-                    {/* =========================
-                        CUIDADOS COM O PET
-                    ========================= */}
-                    <section className="profile-section">
-
-                        <div className="section-title">
-
-                            <div className="section-title-icon">
+                <section className="profile-cards-grid">
+                    {cards.map((card) => (
+                        <button
+                            type="button"
+                            className={`profile-option-card ${card.classe}`}
+                            key={card.titulo}
+                            onClick={card.acao}
+                        >
+                            <div className="option-card-decoration">
                                 <FaPaw />
                             </div>
 
-                            <div>
-                                <h3>Cuidados com seu pet</h3>
-
-                                <p>
-                                    Tudo organizado em um só lugar.
-                                </p>
+                            <div className="option-card-icon">
+                                {card.icone}
                             </div>
 
-                        </div>
-
-
-                        <div className="care-grid">
-
-                            <div className="care-card">
-
-                                <div className="care-icon">
-                                    <FaSyringe />
-                                </div>
-
-                                <div>
-                                    <strong>Vacinas</strong>
-
-                                    <span>
-                                        Acompanhe o histórico de vacinação.
-                                    </span>
-                                </div>
-
-                            </div>
-
-
-                            <div className="care-card">
-
-                                <div className="care-icon">
-                                    <FaUtensils />
-                                </div>
-
-                                <div>
-                                    <strong>Alimentação</strong>
-
-                                    <span>
-                                        Organize os horários das refeições.
-                                    </span>
-                                </div>
-
-                            </div>
-
-
-                            <div className="care-card">
-
-                                <div className="care-icon">
-                                    <FaWalking />
-                                </div>
-
-                                <div>
-                                    <strong>Passeios</strong>
-
-                                    <span>
-                                        Controle a rotina de passeios.
-                                    </span>
-
-                                </div>
-
-                            </div>
-
-
-                            <div className="care-card">
-
-                                <div className="care-icon">
-                                    <FaPills />
-                                </div>
-
-                                <div>
-                                    <strong>Medicação</strong>
-
-                                    <span>
-                                        Não perca os horários dos medicamentos.
-                                    </span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-                    {/* =========================
-                        FAMÍLIA
-                    ========================= */}
-                    <section className="profile-section family-info-section">
-
-                        <div className="section-title">
-
-                            <div className="section-title-icon">
-                                <FaUsers />
-                            </div>
-
-                            <div>
-                                <h3>Família Pet Mon Go</h3>
-
-                                <p>
-                                    Compartilhe os cuidados com sua família.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <div className="family-info-content">
-
-                            <div className="family-main-icon">
-                                <FaUsers />
-                            </div>
-
-                            <div className="family-main-text">
-
-                                <strong>
-                                    Organize os cuidados em família
-                                </strong>
-
-                                <p>
-                                    Crie uma família no Pet Mon Go para
-                                    compartilhar tarefas e manter todos
-                                    informados sobre os cuidados dos pets.
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </section>
-
-
-                    {/* =========================
-                        EXCLUIR CONTA
-                    ========================= */}
-                    <section className="profile-section profile-delete-section">
-
-                        <div className="section-title">
-
-                            <div className="section-title-icon">
-                                <FaTrashAlt />
-                            </div>
-
-                            <div>
-                                <h3>Excluir conta</h3>
-
-                                <p>
-                                    Gerencie sua conta Pet Mon Go.
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <div className="delete-account-content">
-
-                            <div>
-
-                                <strong>
-                                    Excluir minha conta
-                                </strong>
-
-                                <span>
-                                    Esta ação removerá sua conta permanentemente.
-                                </span>
-
-                            </div>
-
-
-                            <button
-                                className="delete-account-btn"
-                                onClick={handleExcluirConta}
-                            >
-                                <FaTrashAlt />
-                                &nbsp; Excluir conta
-                            </button>
-
-                        </div>
-
-                    </section>
-
-
-                    {/* =========================
-                        RODAPÉ
-                    ========================= */}
-                    <footer className="profile-footer">
-
-                        Pet Mon Go • Organizando o cuidado com quem faz parte da família
-
-                    </footer>
-
-                </main>
-
-            </div>
-
+                            <h2>{card.titulo}</h2>
+                            <p>{card.descricao}</p>
+
+                            <span className="option-card-arrow">
+                                <FaChevronRight />
+                            </span>
+                        </button>
+                    ))}
+                </section>
+
+                <section className="profile-family-banner">
+                    <div className="family-banner-icon">
+                        <FaUsers />
+                    </div>
+
+                    <div className="family-banner-text">
+                        <h2>Cuidados compartilhados são melhores!</h2>
+                        <p>
+                            Crie ou acesse sua família para organizar os cuidados
+                            dos seus pets com outras pessoas.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        className="family-banner-button"
+                        onClick={handleCriarFamilia}
+                    >
+                        Minha família
+                        <FaChevronRight />
+                    </button>
+                </section>
+
+                <footer className="profile-footer">
+                    <FaPaw />
+                    <span>
+                        Pet Mon Go · Cuidado familiar inteligente e conectado.
+                    </span>
+                    <FaHeart />
+                </footer>
+            </main>
         </div>
     );
 }

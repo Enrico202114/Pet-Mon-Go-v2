@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -7,6 +6,7 @@ import Family from "./pages/Family";
 import Pets from "./pages/Pets";
 import Dashboard from "./pages/Dashboard";
 import CadastroPet from "./pages/CadastroPet";
+import Settings from "./pages/Settings";
 
 function App() {
   const tutorSalvo = localStorage.getItem("petmon_tutor");
@@ -66,9 +66,10 @@ function App() {
       <Dashboard
         tutor={tutor}
         onHome={() => setTela("home")}
+        onOpenProfile={() => setTela("profile")}
         onPets={() => setTela("pets")}
         onFamily={handleOpenFamily}
-        onSettings={() => setTela("profile")}
+        onSettings={() => setTela("settings")}
         onLogout={handleLogout}
       />
     );
@@ -77,59 +78,96 @@ function App() {
   if (tela === "profile") {
     return (
       <Profile
-        tutor={tutor}
-        onHome={() => setTela("home")}
-        onMinhaFamilia={() => {
-          setModoFamilia(null);
-          setTela("family");
-        }}
-        onCriarFamilia={() => {
-          setModoFamilia("criar");
-          setTela("family");
-        }}
-        onLogout={handleLogout}
-        onAccountDeleted={handleLogout}
+          tutor={tutor}
+          pets={pets}
+          onHome={() => setTela("dashboard")}
+          onMinhaFamilia={() => {
+              setModoFamilia(null);
+              setTela("family");
+          }}
+          onCriarFamilia={() => {
+              setModoFamilia("criar");
+              setTela("family");
+          }}
+          onOpenPets={() => setTela("pets")}
+          onOpenSettings={() => setTela("settings")}
+          onLogout={handleLogout}
+          onAccountDeleted={handleLogout}
       />
     );
   }
 
+  if (tela === "settings") {
+  return (
+    <Settings
+      tutor={tutor}
+      onHome={() => setTela("dashboard")}
+      onOpenProfile={() => setTela("profile")}
+      onPets={() => setTela("pets")}
+      onFamily={handleOpenFamily}
+      onSettings={() => setTela("settings")}
+      onLogout={handleLogout}
+    />
+  );
+}
+
+  
   if (tela === "family") {
     return (
       <Family
         tutor={tutor}
         modoFamilia={modoFamilia}
-        onCreateFamily={handleCreateFamily}
+        onCreateFamily={() => {
+          alert("A criação de família ainda precisa ser conectada ao backend.");
+        }}
         onLeaveFamily={() => {
           setModoFamilia(null);
-          setTela("home");
+          setTela("dashboard");
         }}
         onBack={() => {
           setModoFamilia(null);
-          setTela("home");
+          setTela("dashboard");
         }}
         onOpenProfile={() => {
           setModoFamilia(null);
           setTela("profile");
         }}
+        onHome={() => setTela("dashboard")}
+        onPets={() => setTela("pets")}
+        onFamily={handleOpenFamily}
+        onSettings={() => setTela("settings")}
+        onLogout={handleLogout}
       />
     );
   }
 
   if (tela === "pets") {
-    return (
-      <Pets
-        pets={pets}
-        onAddPet={() => {
-          setPetSelecionado(null);
-          setTela("cadastroPet");
-        }}
-        onOpenPet={(pet) => {
-          setPetSelecionado(pet);
-          alert(`Pet selecionado: ${pet.nome}`);
-        }}
-      />
-    );
-  }
+  return (
+    <Pets
+      pets={pets}
+
+      onHome={() => setTela("dashboard")}
+      onOpenProfile={() => setTela("profile")}
+      onPets={() => setTela("pets")}
+
+      onFamily={handleOpenFamily}
+
+      onSettings={() => setTela("settings")}
+
+      onLogout={handleLogout}
+
+      onAddPet={() => {
+        setPetSelecionado(null);
+        setTela("cadastroPet");
+      }}
+
+      onOpenPet={(pet) => {
+        setPetSelecionado(pet);
+        alert(`Pet selecionado: ${pet.nome}`);
+      }}
+    />
+  );
+}
 
   if (tela === "cadastroPet") {
     return (

@@ -1,15 +1,17 @@
 .family-page {
     min-height: 100vh;
-    padding: 50px 5%;
+    padding: 0;
     background: #f3f7fc;
     color: #173f75;
     box-sizing: border-box;
 }
 
-.family-container {
+.family-page .family-container {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
+    padding: 50px 5%;
+    box-sizing: border-box;
 }
 
 /* CABEÇALHO */

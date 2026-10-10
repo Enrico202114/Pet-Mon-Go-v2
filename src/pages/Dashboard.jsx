@@ -1,22 +1,20 @@
 
 import {
-  FaHome,
   FaPaw,
   FaUsers,
-  FaCog,
-  FaSignOutAlt,
   FaSyringe,
   FaCalendarAlt,
   FaClipboardList,
   FaArrowRight,
-  FaHeart,
 } from "react-icons/fa";
-import logo from "../assets/logo.png";
+
 import "./Dashboard.css";
+import DashboardSidebar from "../components/DashboardSidebar";
 
 function Dashboard({
   tutor,
   onHome,
+  onOpenProfile,
   onPets,
   onFamily,
   onSettings,
@@ -27,65 +25,15 @@ function Dashboard({
 
   return (
     <div className="dashboard">
-      <aside className="dashboard-sidebar">
-        <div className="dashboard-brand">
-
-          <div className="dashboard-logo">
-            <img src={logo} alt="Pet Mon Go" />
-          </div>
-        </div>
-
-        <nav className="dashboard-nav">
-          <button
-            className="dashboard-nav-item active"
-            onClick={onHome}
-          >
-            <FaHome />
-            <span>Início</span>
-          </button>
-
-          <button
-            className="dashboard-nav-item"
-            onClick={onPets}
-          >
-            <FaPaw />
-            <span>Meus Pets</span>
-          </button>
-
-          <button
-            className="dashboard-nav-item"
-            onClick={onFamily}
-          >
-            <FaUsers />
-            <span>Família</span>
-          </button>
-
-          <button
-            className="dashboard-nav-item"
-            onClick={onSettings}
-          >
-            <FaCog />
-            <span>Configurações</span>
-          </button>
-        </nav>
-
-        <div className="dashboard-sidebar-bottom">
-          <div className="dashboard-sidebar-message">
-            <FaHeart />
-            <p>
-              Cuidar de quem você ama ficou mais simples.
-            </p>
-          </div>
-
-          <button
-            className="dashboard-logout"
-            onClick={onLogout}
-          >
-            <FaSignOutAlt />
-            <span>Sair da conta</span>
-          </button>
-        </div>
-      </aside>
+      <DashboardSidebar
+        paginaAtiva="inicio"
+        onHome={onHome}
+        onOpenProfile={onOpenProfile}
+        onPets={onPets}
+        onFamily={onFamily}
+        onSettings={onSettings}
+        onLogout={onLogout}
+      />
 
       <main className="dashboard-main">
         <header className="dashboard-header">
@@ -132,10 +80,12 @@ function Dashboard({
               <div className="dashboard-summary-icon pets-icon">
                 <FaPaw />
               </div>
+
               <div>
                 <span>Meus pets</span>
                 <p>Consulte seus animais cadastrados.</p>
               </div>
+
               <button
                 aria-label="Acessar meus pets"
                 onClick={onPets}
@@ -148,10 +98,12 @@ function Dashboard({
               <div className="dashboard-summary-icon routine-icon">
                 <FaClipboardList />
               </div>
+
               <div>
                 <span>Rotinas</span>
                 <p>Organize os cuidados diários.</p>
               </div>
+
               <FaArrowRight className="dashboard-card-arrow" />
             </article>
 
@@ -159,10 +111,12 @@ function Dashboard({
               <div className="dashboard-summary-icon vaccine-icon">
                 <FaSyringe />
               </div>
+
               <div>
                 <span>Vacinas</span>
                 <p>Acompanhe os registros de vacinação.</p>
               </div>
+
               <FaArrowRight className="dashboard-card-arrow" />
             </article>
 
@@ -170,10 +124,12 @@ function Dashboard({
               <div className="dashboard-summary-icon family-icon">
                 <FaUsers />
               </div>
+
               <div>
                 <span>Família</span>
                 <p>Compartilhe os cuidados com sua família.</p>
               </div>
+
               <button
                 aria-label="Acessar família"
                 onClick={onFamily}
@@ -195,11 +151,14 @@ function Dashboard({
             <div className="dashboard-empty-icon">
               <FaCalendarAlt />
             </div>
+
             <h3>Seus cuidados começam aqui</h3>
+
             <p>
               Cadastre seus pets para começarmos a organizar
               as informações de cuidado.
             </p>
+
             <button
               className="dashboard-secondary-button"
               onClick={onPets}
