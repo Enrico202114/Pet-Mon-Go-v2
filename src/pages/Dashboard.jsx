@@ -11,7 +11,7 @@ import {
   FaArrowRight,
   FaHeart,
 } from "react-icons/fa";
-
+import logo from "../assets/logo.png";
 import "./Dashboard.css";
 
 function Dashboard({
@@ -29,10 +29,9 @@ function Dashboard({
     <div className="dashboard">
       <aside className="dashboard-sidebar">
         <div className="dashboard-brand">
-          <FaPaw className="dashboard-brand-icon" />
-          <div>
-            <h2>Pet Mon Go</h2>
-            <span>Meu Painel</span>
+
+          <div className="dashboard-logo">
+            <img src={logo} alt="Pet Mon Go" />
           </div>
         </div>
 
@@ -91,9 +90,6 @@ function Dashboard({
       <main className="dashboard-main">
         <header className="dashboard-header">
           <div>
-            <span className="dashboard-eyebrow">
-              SEU ESPAÇO DE CUIDADO
-            </span>
             <h1>Meu Painel</h1>
             <p>
               Olá, {nomeTutor}! Vamos cuidar bem dos seus pets?
@@ -109,10 +105,6 @@ function Dashboard({
           <div className="dashboard-welcome-content">
             <span>UM DIA DE CUIDADOS</span>
             <h2>Todo carinho merece organização.</h2>
-            <p>
-              Acompanhe seus animais e organize os cuidados
-              em um só lugar.
-            </p>
 
             <button
               className="dashboard-primary-button"
@@ -132,7 +124,6 @@ function Dashboard({
           <div className="dashboard-section-heading">
             <div>
               <h2>Resumo dos cuidados</h2>
-              <p>Informações para organizar sua rotina.</p>
             </div>
           </div>
 
@@ -197,10 +188,6 @@ function Dashboard({
           <div className="dashboard-section-heading">
             <div>
               <h2>Organize sua rotina</h2>
-              <p>
-                Os registros aparecerão aqui conforme forem
-                implementados e conectados ao sistema.
-              </p>
             </div>
           </div>
 
