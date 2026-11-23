@@ -35,7 +35,7 @@ function Navbar({
       <ul className="navbar-links">
         <li>
           <button type="button" onClick={abrirInicio}>
-            Início
+            início
           </button>
         </li>
         <li>

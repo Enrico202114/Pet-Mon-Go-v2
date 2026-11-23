@@ -25,7 +25,7 @@ function Hero({ onOpenRegister }) {
                             <br />
                             pet de forma <span>fácil</span>
                             <br />
-                            e <span>prático!</span>
+                            e <span>prática!</span>
                         </h1>
 
                         <p>
@@ -44,7 +44,16 @@ function Hero({ onOpenRegister }) {
                                 <span>Começar agora</span>
                             </button>
 
-                            <button className="btn-more">
+                           <button
+                                type="button"
+                                className="btn-more"
+                                onClick={() => {
+                                    document.getElementById("servicos")?.scrollIntoView({
+                                        behavior: "smooth",
+                                        block: "start"
+                                    });
+                                }}
+                            >
                                 Saiba mais
                             </button>
 
@@ -58,7 +67,7 @@ function Hero({ onOpenRegister }) {
 
             </section>
 
-            <section className="care-section">
+            <section className="care-section" id="servicos">
 
                 <div className="care-title">
                     <h2>

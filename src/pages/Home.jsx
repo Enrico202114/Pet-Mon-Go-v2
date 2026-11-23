@@ -2,6 +2,10 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero/hero";
 import {FaCalendarAlt, FaBell, FaClipboardList, FaHeart, FaArrowRight, FaPaw} from "react-icons/fa";
 import "./Home.css";
+import vacinaImg from "../assets/vacinas.jpg";
+import alimentacaoImg from "../assets/alimentacao.jpg";
+import passeiosImg from "../assets/passeios.jpg";
+import medicacaoImg from "../assets/medicacao.jpg";
 
 function Home({
   onOpenLogin,
@@ -132,14 +136,16 @@ function Home({
           </div>
 
 
-          <button className="services-all-btn">
-
+          <button
+            className="services-all-btn"
+            type="button"
+            onClick={onOpenDashboard}
+          >
             Ver todos
 
             <span>
               <FaArrowRight />
             </span>
-
           </button>
 
         </div>
@@ -148,6 +154,12 @@ function Home({
         <div className="service-cards">
 
           <article className="service-card service-card-vaccine">
+
+             <img
+                  src={vacinaImg}
+                  alt="Cachorro recebendo vacinação"
+                  className="service-image"
+              />
 
             <div className="service-content">
 
@@ -167,6 +179,12 @@ function Home({
 
           <article className="service-card service-card-food">
 
+             <img
+                src={alimentacaoImg}
+                alt="Cachorro recebendo alimentação"
+                className="service-image"
+            />
+
             <div className="service-content">
 
               <span>02</span>
@@ -185,6 +203,12 @@ function Home({
 
           <article className="service-card service-card-walk">
 
+             <img
+                  src={passeiosImg}
+                  alt="Cachorro passeando"
+                  className="service-image"
+              />
+
             <div className="service-content">
 
               <span>03</span>
@@ -202,6 +226,12 @@ function Home({
 
 
           <article className="service-card service-card-medicine">
+
+             <img
+                  src={medicacaoImg}
+                  alt="Cachorro recebendo medicação"
+                  className="service-image"
+              />
 
             <div className="service-content">
 
