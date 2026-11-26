@@ -1,8 +1,8 @@
 .family-page {
     min-height: 100vh;
     padding: 0;
-    background: #f3f7fc;
-    color: #173f75;
+    background: #fff8ef;
+    color: #123b86;
     box-sizing: border-box;
 }
 
@@ -27,8 +27,8 @@
     width: 65px;
     height: 65px;
     border-radius: 18px;
-    background: #e5efff;
-    color: #2478d8;
+    background: #e3edff;
+    color: #123b86;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -38,7 +38,7 @@
 
 .family-header h1 {
     margin: 0 0 5px;
-    color: #173f75;
+    color: #123b86;
     font-size: 32px;
 }
 
@@ -59,6 +59,7 @@
 /* CARD PRINCIPAL */
 
 .family-main-card {
+    position: relative;
     grid-column: span 2;
     padding: 30px;
     border-radius: 22px;
@@ -66,6 +67,35 @@
     border: 1px solid #e1eaf4;
     box-shadow: 0 8px 25px rgba(30, 75, 120, 0.08);
 }
+
+.family-edit-button {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #d7e4f5;
+    border-radius: 12px;
+    background: #f4f8ff;
+    color: #173f8a;
+    font-size: 18px;
+    cursor: pointer;
+}
+.family-edit-button:hover { background: #e4edfc; }
+
+.family-edit-form { display:grid; gap:14px; margin:22px 0; padding:20px; border:1px solid #dce7f5; border-radius:16px; background:#f8faff; }
+.family-edit-form label { display:grid; gap:7px; color:#38577d; font-weight:600; }
+.family-edit-form input:not([type="checkbox"]) { width:100%; max-width:440px; box-sizing:border-box; padding:12px 14px; border:1px solid #cbd9eb; border-radius:10px; font:inherit; }
+.family-edit-form .family-privacy-toggle { display:flex; align-items:center; gap:10px; }
+.family-edit-form input[type="checkbox"] { width:18px; height:18px; accent-color:#ff9418; }
+.family-edit-form button { justify-self:start; min-width:120px; margin-right:8px; padding:11px 18px; border:1px solid #cddcf0; border-radius:10px; background:#fff; color:#173f75; font-weight:700; cursor:pointer; }
+.family-edit-form button:first-of-type { border-color:#ff9418; background:#ff9418; color:#fff; }
+.family-edit-form button:hover { filter:brightness(.96); }
+.family-visibility { display:inline-flex; margin:16px 0 0; padding:6px 12px; border-radius:999px; background:#eaf1ff; color:#234d8a; font-size:13px; font-weight:700; }
+.family-header .create-family-button, .family-add-another, .create-family-card .create-family-button, .leave-family-button { min-height:46px; padding:11px 18px; border-radius:12px; font:inherit; font-weight:700; cursor:pointer; transition:transform .16s, box-shadow .16s, background .16s; }
+.family-header .create-family-button:hover, .family-add-another:hover, .create-family-card .create-family-button:hover, .leave-family-button:hover { transform:translateY(-1px); box-shadow:0 6px 15px #173f751c; }
 
 .family-card-top {
     display: flex;
@@ -77,8 +107,8 @@
     width: 80px;
     height: 80px;
     border-radius: 20px;
-    background: #e8f1ff;
-    color: #2478d8;
+    background: #e3edff;
+    color: #123b86;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,7 +154,7 @@
 }
 
 .family-code strong {
-    color: #2478d8;
+    color: #123b86;
     font-size: 23px;
     letter-spacing: 3px;
 }
@@ -135,14 +165,20 @@
     border: none;
     border-radius: 12px;
     background: #ffffff;
-    color: #2478d8;
+    color: #123b86;
     cursor: pointer;
     transition: 0.2s;
 }
 
 .copy-code:hover {
-    background: #2478d8;
+    background: #123b86;
     color: #ffffff;
+}
+
+.family-copy-feedback {
+    margin: 8px 0 0;
+    color: #123b86;
+    font-size: 13px;
 }
 
 /* CARDS */
@@ -181,8 +217,8 @@
     height: 32px;
     padding: 0 8px;
     border-radius: 50%;
-    background: #e8f1ff;
-    color: #2478d8;
+    background: #e3edff;
+    color: #123b86;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -277,6 +313,16 @@
     font-size: 12px;
 }
 
+.family-pets-link {
+    margin-left: auto;
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 22px;
+    background: #123b86;
+    color: #fff;
+    font-weight: 700;
+}
+
 /* SAIR */
 
 .leave-family-button {
@@ -335,6 +381,15 @@
     line-height: 1.5;
 }
 
+.family-local-note {
+    display: block;
+    max-width: 450px;
+    margin: 0 auto 24px;
+    color: #7189a1;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
 .create-family-button {
     border: none;
     padding: 13px 25px;
@@ -380,4 +435,17 @@
         align-items: flex-start;
     }
 
+    .family-pet-preview {
+        flex-wrap: wrap;
+    }
+
+    .family-pets-link {
+        margin-left: 64px;
+    }
+
 }
+.family-card-bottom { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:22px; padding-top:18px; border-top:1px solid #e1eaf4; }
+.family-card-bottom>span { display:inline-flex; align-items:center; gap:8px; color:#66809e; font-size:13px; }
+.family-card-bottom .leave-family-button { display:inline-flex; align-items:center; gap:8px; padding:10px 13px; border:0; border-radius:10px; background:#fff0f0; color:#b42318; font:inherit; font-size:13px; cursor:pointer; }
+.family-add-another { display:inline-flex; align-items:center; gap:10px; margin:24px 0 0; padding:12px 16px; border:1px solid #cfdef0; border-radius:12px; background:#fff; color:#173f75; font:inherit; font-weight:700; cursor:pointer; }
+@media(max-width:600px) { .family-card-bottom { align-items:flex-start; flex-direction:column; } }

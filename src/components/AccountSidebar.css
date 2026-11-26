@@ -16,8 +16,8 @@
 .account-sidebar {
   position: fixed;
   top: 0;
-  right: -400px;
-  width: 380px;
+  right: -100vw;
+  width: min(380px, 100vw);
   height: 100vh;
   background: white;
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.70);
@@ -33,16 +33,24 @@
   right: 0;
 }
 
+@media (max-width: 420px) {
+  .sidebar-header,
+  .sidebar-content {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
+
 .sidebar-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30px;
-  border-bottom: 3px solid #f59048;
+  border-bottom: 3px solid #ff9418;
 }
 
 .sidebar-header h2 {
-  color: #1d4ed8;
+  color: #123b86;
 }
 
 .sidebar-header button {
@@ -63,7 +71,8 @@
   height: 55px;
   border: none;
   border-radius: 15px;
-  background: #b5c5df;
+  background: #e3edff;
+  color: #123b86;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -75,6 +84,6 @@
 }
 
 .sidebar-btn:hover {
-  background: #f59048;
+  background: #ff9418;
   color: white;
 }

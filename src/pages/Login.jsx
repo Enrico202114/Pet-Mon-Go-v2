@@ -1,13 +1,14 @@
 import { useState } from "react";
 import "./Login.css";
 import logo from "../assets/logo.png";
-import { FaEnvelope, FaLock, FaUser, FaPaw } from "react-icons/fa";
+import { FaEnvelope, FaLock, FaUser, FaHeart } from "react-icons/fa";
 
-function Login({ modoInicial = "login", onLogin }) {
+function Login({ modoInicial = "login", onLogin, onHome }) {
     const [isRegister, setIsRegister] = useState(modoInicial === "register");
 
     const [nome, setNome] = useState("");
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState(() => localStorage.getItem("petmon_email_salvo") || "");
+    const [lembrarEmail, setLembrarEmail] = useState(() => Boolean(localStorage.getItem("petmon_email_salvo")));
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
 
@@ -93,6 +94,12 @@ function Login({ modoInicial = "login", onLogin }) {
                 return;
             }
 
+            if (lembrarEmail) {
+                localStorage.setItem("petmon_email_salvo", email);
+            } else {
+                localStorage.removeItem("petmon_email_salvo");
+            }
+
             setMensagem("Login realizado com sucesso!");
 
             console.log("Tutor logado:", dados.tutor);
@@ -132,6 +139,7 @@ function Login({ modoInicial = "login", onLogin }) {
                                 </p>
 
                                 <button
+                                    type="button"
                                     className="outline-button"
                                     onClick={() => {
                                         setIsRegister(true);
@@ -152,6 +160,7 @@ function Login({ modoInicial = "login", onLogin }) {
                                 </p>
 
                                 <button
+                                    type="button"
                                     className="outline-button"
                                     onClick={() => {
                                         setIsRegister(false);
@@ -163,6 +172,10 @@ function Login({ modoInicial = "login", onLogin }) {
                                 </button>
                             </>
                         )}
+
+                        <button type="button" className="auth-home-link" onClick={onHome}>
+                            Voltar para a página inicial
+                        </button>
 
                     </div>
 
@@ -177,7 +190,7 @@ function Login({ modoInicial = "login", onLogin }) {
                             <div className="form-header">
 
                                 <div className="form-icon">
-                                    <FaPaw />
+                                    <FaHeart />
                                 </div>
 
                                 <h2>Entrar</h2>
@@ -200,6 +213,9 @@ function Login({ modoInicial = "login", onLogin }) {
                                         <input
                                             id="email"
                                             type="email"
+                                            aria-label="E-mail"
+                                            autoComplete="email"
+                                            required
                                             placeholder="Digite seu e-mail"
                                             value={email}
                                             onChange={(e) =>
@@ -220,6 +236,9 @@ function Login({ modoInicial = "login", onLogin }) {
 
                                         <input
                                             type="password"
+                                            aria-label="Senha"
+                                            autoComplete="current-password"
+                                            required
                                             placeholder="Digite sua senha"
                                             value={senha}
                                             onChange={(e) =>
@@ -236,7 +255,11 @@ function Login({ modoInicial = "login", onLogin }) {
 
                                     <label className="remember">
 
-                                        <input type="checkbox" />
+                                        <input
+                                            type="checkbox"
+                                            checked={lembrarEmail}
+                                            onChange={(event) => setLembrarEmail(event.target.checked)}
+                                        />
 
                                         <span>
                                             Lembrar de mim
@@ -248,6 +271,7 @@ function Login({ modoInicial = "login", onLogin }) {
                                     <button
                                         type="button"
                                         className="forgot-password"
+                                        onClick={() => setMensagem("A recuperação de senha ainda não está disponível. Nenhuma alteração foi feita na sua conta.")}
                                     >
                                         Esqueceu a senha?
                                     </button>
@@ -287,7 +311,7 @@ function Login({ modoInicial = "login", onLogin }) {
                             <div className="form-header">
 
                                 <div className="form-icon">
-                                    <FaPaw />
+                                    <FaHeart />
                                 </div>
 
                                 <h2>Criar Conta</h2>
@@ -310,6 +334,9 @@ function Login({ modoInicial = "login", onLogin }) {
                                         <input
                                             id="name"
                                             type="text"
+                                            aria-label="Nome"
+                                            autoComplete="name"
+                                            required
                                             placeholder="Digite seu nome"
                                             value={nome}
                                             onChange={(e) =>
@@ -330,6 +357,9 @@ function Login({ modoInicial = "login", onLogin }) {
 
                                         <input
                                             type="email"
+                                            aria-label="E-mail"
+                                            autoComplete="email"
+                                            required
                                             placeholder="Digite seu email"
                                             value={email}
                                             onChange={(e) =>
@@ -350,6 +380,9 @@ function Login({ modoInicial = "login", onLogin }) {
 
                                         <input
                                             type="password"
+                                            aria-label="Senha"
+                                            autoComplete="new-password"
+                                            required
                                             placeholder="Crie uma senha"
                                             value={senha}
                                             onChange={(e) =>
@@ -370,6 +403,9 @@ function Login({ modoInicial = "login", onLogin }) {
 
                                         <input
                                             type="password"
+                                            aria-label="Confirme sua senha"
+                                            autoComplete="new-password"
+                                            required
                                             placeholder="Confirme sua senha"
                                             value={confirmarSenha}
                                             onChange={(e) =>

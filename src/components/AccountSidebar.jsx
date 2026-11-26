@@ -1,17 +1,6 @@
 
 import "./AccountSidebar.css";
-import {
-  FaTimes,
-  FaSignInAlt,
-  FaUserPlus,
-  FaInfo,
-  FaBell,
-  FaUser,
-  FaUsers,
-  FaSignOutAlt,
-  FaCog,
-  FaHome,
-} from "react-icons/fa";
+import { FaTimes, FaSignInAlt, FaUserPlus, FaInfo, FaUser, FaDog, FaUsers, FaSignOutAlt, FaCog, FaHome } from "react-icons/fa";
 
 function AccountSidebar({
   isOpen,
@@ -19,9 +8,13 @@ function AccountSidebar({
   onOpenLogin,
   onOpenRegister,
   onOpenProfile,
+  onOpenSettings,
+  onOpenAbout,
   onOpenDashboard,
+  onOpenPets,
   onOpenFamily,
   onCreateFamily,
+  familia,
   tutor,
   onLogout,
 }) {
@@ -88,34 +81,36 @@ function AccountSidebar({
               <button
                 type="button"
                 className="sidebar-btn"
+                onClick={() => executarAcao(onOpenPets)}
+              >
+                <FaDog />
+                Meus Pets
+              </button>
+
+              <button
+                type="button"
+                className="sidebar-btn"
                 onClick={() => executarAcao(onOpenFamily)}
               >
                 <FaUsers />
                 Minha Família
               </button>
 
-              <button
-                type="button"
-                className="sidebar-btn"
-                onClick={() => executarAcao(onCreateFamily)}
-              >
-                <FaUsers />
-                Criar Família
-              </button>
+              {!familia && (
+                <button
+                  type="button"
+                  className="sidebar-btn"
+                  onClick={() => executarAcao(onCreateFamily)}
+                >
+                  <FaUsers />
+                  Criar Família
+                </button>
+              )}
 
               <button
                 type="button"
                 className="sidebar-btn"
-                onClick={() => executarAcao(onOpenFamily)}
-              >
-                <FaSignOutAlt />
-                Sair da Família
-              </button>
-
-              <button
-                type="button"
-                className="sidebar-btn"
-                onClick={() => executarAcao(onOpenProfile)}
+                onClick={() => executarAcao(onOpenSettings)}
               >
                 <FaCog />
                 Configurações
@@ -152,15 +147,15 @@ function AccountSidebar({
             </>
           )}
 
-          <button type="button" className="sidebar-btn">
+          <button
+            type="button"
+            className="sidebar-btn"
+            onClick={() => executarAcao(onOpenAbout)}
+          >
             <FaInfo />
             Sobre o Pet Mon Go
           </button>
 
-          <button type="button" className="sidebar-btn">
-            <FaBell />
-            Configurações de Notificações
-          </button>
         </div>
       </aside>
     </>

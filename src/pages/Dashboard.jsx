@@ -1,6 +1,6 @@
 
 import {
-  FaPaw,
+  FaDog,
   FaUsers,
   FaSyringe,
   FaCalendarAlt,
@@ -9,11 +9,14 @@ import {
 } from "react-icons/fa";
 
 import "./Dashboard.css";
-import DashboardSidebar from "../components/DashboardSidebar";
+import Sidebar from "../components/Sidebar";
+import FooterPanel from "../components/FooterPanel";
 
 function Dashboard({
   tutor,
+  pets = [],
   onHome,
+  onDashboard,
   onOpenProfile,
   onPets,
   onFamily,
@@ -25,9 +28,10 @@ function Dashboard({
 
   return (
     <div className="dashboard">
-      <DashboardSidebar
-        paginaAtiva="inicio"
+      <Sidebar
+        paginaAtiva="painel"
         onHome={onHome}
+        onDashboard={onDashboard}
         onOpenProfile={onOpenProfile}
         onPets={onPets}
         onFamily={onFamily}
@@ -44,9 +48,6 @@ function Dashboard({
             </p>
           </div>
 
-          <div className="dashboard-avatar">
-            <FaPaw />
-          </div>
         </header>
 
         <section className="dashboard-welcome">
@@ -63,9 +64,6 @@ function Dashboard({
             </button>
           </div>
 
-          <div className="dashboard-welcome-icon">
-            <FaPaw />
-          </div>
         </section>
 
         <section className="dashboard-section">
@@ -78,7 +76,7 @@ function Dashboard({
           <div className="dashboard-summary-grid">
             <article className="dashboard-summary-card">
               <div className="dashboard-summary-icon pets-icon">
-                <FaPaw />
+                <FaDog />
               </div>
 
               <div>
@@ -101,10 +99,11 @@ function Dashboard({
 
               <div>
                 <span>Rotinas</span>
-                <p>Organize os cuidados diários.</p>
+                <p>Cadastre um pet para organizar os cuidados diários.</p>
               </div>
-
-              <FaArrowRight className="dashboard-card-arrow" />
+              <button className="dashboard-summary-action" type="button" aria-label="Acessar meus pets para organizar rotinas" onClick={onPets}>
+                <FaArrowRight />
+              </button>
             </article>
 
             <article className="dashboard-summary-card">
@@ -114,10 +113,11 @@ function Dashboard({
 
               <div>
                 <span>Vacinas</span>
-                <p>Acompanhe os registros de vacinação.</p>
+                <p>Cadastre um pet para acompanhar as vacinas.</p>
               </div>
-
-              <FaArrowRight className="dashboard-card-arrow" />
+              <button className="dashboard-summary-action" type="button" aria-label="Acessar meus pets para acompanhar vacinas" onClick={onPets}>
+                <FaArrowRight />
+              </button>
             </article>
 
             <article className="dashboard-summary-card">
@@ -127,7 +127,7 @@ function Dashboard({
 
               <div>
                 <span>Família</span>
-                <p>Compartilhe os cuidados com sua família.</p>
+                <p>Organize os dados da família neste dispositivo.</p>
               </div>
 
               <button
@@ -147,7 +147,15 @@ function Dashboard({
             </div>
           </div>
 
-          <div className="dashboard-empty-state">
+          {pets.length ? <div className="dashboard-care-tables">
+            {pets.map((pet) => <article className="dashboard-care-table-card" key={pet.id || pet.idpet}>
+              <h3>{pet.nome} <small>({pet.registradoPor || "Tutor não informado"} registrou)</small></h3>
+              {[["Vacinas", pet.vacinas || []], ["Medicações", pet.medicacoes || []], ["Passeios", pet.passeios || []]].map(([title, rows]) => <section key={title}>
+                <h4>{title}</h4><div className="dashboard-table-scroll"><table><thead><tr>{title === "Vacinas" ? <><th>Vacina</th><th>Aplicação</th><th>Próxima dose</th></> : title === "Medicações" ? <><th>Medicamento</th><th>Dosagem</th><th>Período</th></> : <><th>Data e hora</th><th>Duração</th><th>Local</th></>}</tr></thead>
+                  <tbody>{rows.length ? rows.map((row, i) => <tr key={row.id || row.idvacina || row.idmedicacao || row.idpasseio || i}>{title === "Vacinas" ? <><td>{row.nomevacina}</td><td>{row.dataaplicacao}</td><td>{row.proximadose || "—"}</td></> : title === "Medicações" ? <><td>{row.nomemedicacao}</td><td>{row.dosagemmedicamento || "—"}</td><td>{row.datainicio || "—"} – {row.datafim || "—"}</td></> : <><td>{row.datahora}</td><td>{row.duracaoMinutos} min</td><td>{row.local || "—"}</td></>}</tr>) : <tr><td colSpan="3">Nenhum registro cadastrado.</td></tr>}</tbody>
+                </table></div></section>)}
+            </article>)}
+          </div> : <div className="dashboard-empty-state">
             <div className="dashboard-empty-icon">
               <FaCalendarAlt />
             </div>
@@ -165,12 +173,10 @@ function Dashboard({
             >
               Acessar meus pets
             </button>
-          </div>
+          </div>}
         </section>
 
-        <footer className="dashboard-footer">
-          Pet Mon Go · Cuidado Familiar Inteligente e Conectado
-        </footer>
+        <FooterPanel />
       </main>
     </div>
   );

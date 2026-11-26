@@ -1,350 +1,122 @@
-import React from "react";
-import {
-    FaUser,
-    FaHome,
-    FaPaw,
-    FaUsers,
-    FaCog,
-    FaSignOutAlt,
-    FaEnvelope,
-    FaEdit,
-    FaShieldAlt,
-    FaHeart,
-    FaTrashAlt,
-    FaChevronRight,
-    FaInfoCircle,
-} from "react-icons/fa";
-
-import logo from "../assets/logo.png";
+import { useRef, useState } from "react";
+import { FaUser, FaDog, FaUsers, FaEnvelope, FaEdit, FaTrashAlt, FaArrowRight, FaPlus, FaTimes, FaSave } from "react-icons/fa";
+import Sidebar from "../components/Sidebar";
+import FooterPanel from "../components/FooterPanel";
 import "./Profile.css";
+import "./Dashboard.css";
 
-function Profile({
-    tutor,
-    pets = [],
-    onHome,
-    onMinhaFamilia,
-    onCriarFamilia,
-    onSairFamilia,
-    onOpenPets,
-    onOpenSettings,
-    onLogout,
-    onAccountDeleted,
-}) {
-    const nomeTutor =
-        tutor?.nometutor ||
-        tutor?.nome ||
-        tutor?.nomeTutor ||
-        "Tutor";
+function Profile({ tutor, pets = [], familias = [], onUpdateTutor, onSaveAvatar, onDeleteAccount,
+  onHome, onDashboard, onOpenProfile, onMinhaFamilia, onCriarFamilia, onOpenPets, onOpenSettings, onLogout }) {
+  const nomeTutor = tutor?.nometutor || tutor?.nome || "Tutor";
+  const emailTutor = tutor?.emailtutor || tutor?.email || "E-mail não informado";
+  const iniciais = nomeTutor.trim().split(/\s+/).slice(0, 2).map((parte) => parte[0]?.toLocaleUpperCase("pt-BR")).join("");
+  const [editando, setEditando] = useState(false);
+  const [nome, setNome] = useState(nomeTutor);
+  const [email, setEmail] = useState(emailTutor === "E-mail não informado" ? "" : emailTutor);
+  const [senhaAtual, setSenhaAtual] = useState("");
+  const [senha, setSenha] = useState("");
+  const [confirmarSenha, setConfirmarSenha] = useState("");
+  const [erro, setErro] = useState("");
+  const [salvando, setSalvando] = useState(false);
+  const avatarInput = useRef(null);
 
-    const emailTutor =
-        tutor?.emailtutor ||
-        tutor?.email ||
-        tutor?.emailTutor ||
-        "E-mail não informado";
+  async function salvarAlteracoes(event) {
+    event.preventDefault();
+    setErro("");
+    if (senha && senha !== confirmarSenha) return setErro("As senhas não coincidem.");
+    if (senha && !senhaAtual) return setErro("Informe sua senha atual para trocar a senha.");
+    const alteracoes = { nometutor: nome.trim(), emailtutor: email.trim() };
+    if (senha) Object.assign(alteracoes, { senhaAtual, senhatutor: senha });
+    setSalvando(true);
+    try {
+      await onUpdateTutor(alteracoes);
+      setSenhaAtual(""); setSenha(""); setConfirmarSenha(""); setEditando(false);
+    } catch (error) { setErro(error.message || "Não foi possível salvar seus dados."); }
+    finally { setSalvando(false); }
+  }
 
-    const quantidadePets = pets.length;
+  function alterarFoto(event) {
+    const arquivo = event.target.files?.[0];
+    if (!arquivo) return;
+    if (!arquivo.type.startsWith("image/")) return setErro("Escolha um arquivo de imagem.");
+    if (arquivo.size > 3 * 1024 * 1024) return setErro("A imagem deve ter no máximo 3 MB.");
+    const leitor = new FileReader();
+    leitor.onload = () => onSaveAvatar(leitor.result);
+    leitor.readAsDataURL(arquivo);
+  }
 
-    const handleEditar = () => {
-        alert("A edição do perfil será implementada na próxima etapa.");
-    };
+  async function excluirConta() {
+    if (!window.confirm("Deseja excluir sua conta? Essa ação não pode ser desfeita.")) return;
+    setErro("");
+    try { await onDeleteAccount(); }
+    catch (error) { setErro(error.message || "Não foi possível excluir a conta."); }
+  }
 
-    const handleExcluirConta = () => {
-        const confirmar = window.confirm(
-            "Tem certeza que deseja excluir sua conta? Esta ação é permanente."
-        );
+  const nomePet = (value) => {
+    const texto = String(value || "Pet").trim();
+    return texto ? texto[0].toLocaleUpperCase("pt-BR") + texto.slice(1) : "Pet";
+  };
 
-        if (confirmar) {
-            if (onAccountDeleted) {
-                onAccountDeleted();
-            } else {
-                alert(
-                    "A exclusão da conta precisa ser conectada ao backend."
-                );
-            }
-        }
-    };
+  return (
+    <div className="profile-page">
+      <Sidebar paginaAtiva="perfil" onHome={onHome} onDashboard={onDashboard} onOpenProfile={onOpenProfile}
+        onPets={onOpenPets} onFamily={onMinhaFamilia} onSettings={onOpenSettings} onLogout={onLogout} />
+      <main className="profile-content">
+        <header className="profile-heading"><div><h1>Meu Perfil</h1><p>Seus dados e atalhos para os cuidados da sua família.</p></div></header>
+        <section className="profile-account-card">
+          <button type="button" className="profile-edit-button" title={editando ? "Cancelar edição" : "Editar conta"}
+            aria-label={editando ? "Cancelar edição" : "Editar conta"} onClick={() => { setEditando((value) => !value); setErro(""); }}>
+            {editando ? <FaTimes /> : <FaEdit />}
+          </button>
+          <div className="profile-account-summary">
+            <button type="button" className="profile-photo-button" aria-label="Alterar foto do perfil" onClick={() => avatarInput.current?.click()}>
+              {tutor?.fotoPerfil ? <img src={tutor.fotoPerfil} alt={`Foto de ${nomeTutor}`} /> : <span>{iniciais || <FaUser />}</span>}
+            </button>
+            <input ref={avatarInput} className="profile-photo-input" type="file" accept="image/*" onChange={alterarFoto} />
+            <div className="profile-account-identity">
+              <span className="profile-label">Minha conta</span>
+              <h2>{nomeTutor}</h2>
+              <p><FaEnvelope aria-hidden="true" /> {emailTutor}</p>
+            </div>
+          </div>
+          {editando && <form className="profile-edit-form" onSubmit={salvarAlteracoes}>
+            <label>Nome completo<input value={nome} onChange={(event) => setNome(event.target.value)} required /></label>
+            <label>E-mail<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} required /></label>
+            <label>Senha atual <span className="profile-optional">(necessária para trocar a senha)</span>
+              <input type="password" value={senhaAtual} onChange={(event) => setSenhaAtual(event.target.value)} autoComplete="current-password" /></label>
+            <label>Nova senha <span className="profile-optional">(opcional)</span>
+              <input type="password" value={senha} onChange={(event) => setSenha(event.target.value)} autoComplete="new-password" /></label>
+            {senha && <label>Confirmar nova senha<input type="password" value={confirmarSenha} onChange={(event) => setConfirmarSenha(event.target.value)} autoComplete="new-password" required /></label>}
+            {erro && <p className="profile-form-error" role="alert">{erro}</p>}
+            <div className="profile-edit-actions"><button type="submit" disabled={salvando}><FaSave /> {salvando ? "Salvando…" : "Salvar alterações"}</button>
+              <button type="button" className="profile-delete-button" onClick={excluirConta}><FaTrashAlt /> Excluir conta</button></div>
+          </form>}
+          {!editando && erro && <p className="profile-form-error" role="alert">{erro}</p>}
+          {!editando && <button type="button" className="profile-delete-link" onClick={excluirConta}><FaTrashAlt /> Excluir conta</button>}
+        </section>
 
-    const handleMinhaFamilia = () => {
-        if (onMinhaFamilia) onMinhaFamilia();
-    };
+        <div className="profile-shortcuts-grid">
+          <section className="profile-shortcut-card">
+            <header><div className="profile-shortcut-title"><FaDog /><h2>Meus animais</h2></div></header>
+            {pets.length ? <div className="profile-mini-table-wrap"><table className="profile-mini-table">
+              <thead><tr><th>Nome</th><th>Tipo</th><th>Raça</th></tr></thead>
+              <tbody>{pets.slice(0, 3).map((pet) => <tr key={pet.id || pet.idpet || pet.nome}><td>{nomePet(pet.nome)}</td><td>{pet.especie || "—"}</td><td>{pet.raca || "—"}</td></tr>)}</tbody>
+            </table><button type="button" className="profile-link-button" onClick={onOpenPets}>Ver todos os animais <FaArrowRight /></button></div>
+              : <div className="profile-shortcut-empty"><p>Você ainda não cadastrou nenhum animal.</p><button type="button" className="profile-link-button" onClick={onOpenPets}><FaPlus /> Cadastrar animal</button></div>}
+          </section>
 
-    const handleCriarFamilia = () => {
-        if (onCriarFamilia) {
-            onCriarFamilia();
-        } else if (onMinhaFamilia) {
-            onMinhaFamilia();
-        }
-    };
-
-    const cards = [
-        {
-            titulo: "Dados do Perfil",
-            descricao: "Visualize e edite suas informações pessoais.",
-            icone: <FaUser />,
-            classe: "green",
-            acao: handleEditar,
-        },
-        {
-            titulo: "Info da Conta",
-            descricao: "Veja seus dados, e-mail e informações da conta.",
-            icone: <FaInfoCircle />,
-            classe: "gold",
-            acao: handleEditar,
-        },
-        {
-            titulo: "Segurança",
-            descricao: "Cuide da proteção e da segurança da sua conta.",
-            icone: <FaShieldAlt />,
-            classe: "blue",
-            acao: () =>
-                alert("A alteração de senha será implementada na próxima etapa."),
-        },
-        {
-            titulo: "Pet Mon Go",
-            descricao: `${quantidadePets} pet(s) cadastrado(s). Acesse seus animais.`,
-            icone: <FaPaw />,
-            classe: "green-dark",
-            acao: () => {
-                if (onOpenPets) onOpenPets();
-            },
-        },
-        {
-            titulo: "Família",
-            descricao: "Compartilhe os cuidados dos seus pets.",
-            icone: <FaUsers />,
-            classe: "gold",
-            acao: handleMinhaFamilia,
-        },
-        {
-            titulo: "Excluir Conta",
-            descricao: "Remova sua conta permanentemente.",
-            icone: <FaTrashAlt />,
-            classe: "danger",
-            acao: handleExcluirConta,
-        },
-    ];
-
-    return (
-        <div className="profile-page">
-            <header className="profile-topbar">
-                <button
-                    className="profile-mobile-menu"
-                    onClick={onHome}
-                    aria-label="Ir para o início"
-                >
-                    <FaHome />
-                </button>
-
-                <div className="profile-topbar-user">
-                    <div className="topbar-avatar">
-                        <FaUser />
-                    </div>
-                    <span>{nomeTutor}</span>
-                </div>
-            </header>
-
-            <aside className="profile-sidebar">
-                <div className="profile-logo">
-                    <img src={logo} alt="Pet Mon Go" />
-                </div>
-
-                <nav className="profile-navigation">
-                    <button
-                        className="profile-nav-item"
-                        onClick={onHome}
-                    >
-                        <FaHome />
-                        <span>Início</span>
-                    </button>
-
-                    <button
-                        className="profile-nav-item active"
-                        aria-current="page"
-                    >
-                        <FaUser />
-                        <span>Meu Perfil</span>
-                    </button>
-
-                    <button
-                        className="profile-nav-item"
-                        onClick={handleMinhaFamilia}
-                    >
-                        <FaUsers />
-                        <span>Família</span>
-                    </button>
-
-                    <button
-                        className="profile-nav-item"
-                        onClick={() => {
-                            if (onOpenPets) onOpenPets();
-                        }}
-                    >
-                        <FaPaw />
-                        <span>Pets</span>
-                    </button>
-
-                    <button
-                        className="profile-nav-item"
-                        onClick={() => {
-                            if (onOpenSettings) onOpenSettings();
-                        }}
-                    >
-                        <FaCog />
-                        <span>Configurações</span>
-                    </button>
-
-                    <button
-                        className="profile-nav-item profile-nav-logout"
-                        onClick={() => {
-                            if (onLogout) onLogout();
-                        }}
-                    >
-                        <FaSignOutAlt />
-                        <span>Sair</span>
-                    </button>
-                </nav>
-
-                <div className="profile-sidebar-decoration">
-                    <FaPaw />
-                    <FaHeart />
-                </div>
-            </aside>
-
-            <main className="profile-content">
-                <div className="profile-heading">
-                    <div className="profile-heading-icon">
-                        <FaCog />
-                    </div>
-                    <div>
-                        <h1>Perfil</h1>
-                        <p>
-                            Gerencie suas informações e configurações da sua conta.
-                        </p>
-                    </div>
-                </div>
-
-                <section className="profile-hero-card">
-                    <div className="profile-hero-top">
-                        <div className="profile-avatar">
-                            <div className="profile-avatar-icon">
-                                <FaUser />
-                            </div>
-
-                            <button
-                                className="avatar-edit"
-                                title="Alterar foto"
-                                aria-label="Alterar foto do perfil"
-                                onClick={() =>
-                                    alert(
-                                        "A alteração da foto será implementada posteriormente."
-                                    )
-                                }
-                            >
-                                <FaEdit />
-                            </button>
-                        </div>
-
-                        <div className="profile-identity">
-                            <h2>{nomeTutor}</h2>
-                            <p>
-                                <FaEnvelope />
-                                <span>{emailTutor}</span>
-                            </p>
-                            <span className="profile-status">
-                                <span className="status-dot" />
-                                Conta ativa
-                            </span>
-                        </div>
-
-                        <FaPaw className="profile-hero-paw" />
-                    </div>
-
-                    <div className="profile-hero-details">
-                        <div className="hero-detail">
-                            <FaUser />
-                            <div>
-                                <span>Nome completo</span>
-                                <strong>{nomeTutor}</strong>
-                            </div>
-                        </div>
-
-                        <div className="hero-detail">
-                            <FaEnvelope />
-                            <div>
-                                <span>E-mail</span>
-                                <strong>{emailTutor}</strong>
-                            </div>
-                        </div>
-
-                        <div className="hero-detail">
-                            <FaPaw />
-                            <div>
-                                <span>Pets cadastrados</span>
-                                <strong>{quantidadePets}</strong>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <section className="profile-cards-grid">
-                    {cards.map((card) => (
-                        <button
-                            type="button"
-                            className={`profile-option-card ${card.classe}`}
-                            key={card.titulo}
-                            onClick={card.acao}
-                        >
-                            <div className="option-card-decoration">
-                                <FaPaw />
-                            </div>
-
-                            <div className="option-card-icon">
-                                {card.icone}
-                            </div>
-
-                            <h2>{card.titulo}</h2>
-                            <p>{card.descricao}</p>
-
-                            <span className="option-card-arrow">
-                                <FaChevronRight />
-                            </span>
-                        </button>
-                    ))}
-                </section>
-
-                <section className="profile-family-banner">
-                    <div className="family-banner-icon">
-                        <FaUsers />
-                    </div>
-
-                    <div className="family-banner-text">
-                        <h2>Cuidados compartilhados são melhores!</h2>
-                        <p>
-                            Crie ou acesse sua família para organizar os cuidados
-                            dos seus pets com outras pessoas.
-                        </p>
-                    </div>
-
-                    <button
-                        type="button"
-                        className="family-banner-button"
-                        onClick={handleCriarFamilia}
-                    >
-                        Minha família
-                        <FaChevronRight />
-                    </button>
-                </section>
-
-                <footer className="profile-footer">
-                    <FaPaw />
-                    <span>
-                        Pet Mon Go · Cuidado familiar inteligente e conectado.
-                    </span>
-                    <FaHeart />
-                </footer>
-            </main>
+          <section className="profile-shortcut-card">
+            <header><div className="profile-shortcut-title"><FaUsers /><h2>Famílias</h2></div></header>
+            {familias.length ? <div className="profile-family-list">{familias.slice(0, 3).map((item) => <div className="profile-family-row" key={item.codigo || item.nome}>
+              <div><strong>{item.nome || "Minha família"}</strong><span>Código: {item.codigo || "—"}</span></div>
+            </div>)}<button type="button" className="profile-link-button" onClick={onMinhaFamilia}>Ver famílias <FaArrowRight /></button></div>
+              : <div className="profile-shortcut-empty"><p>Você ainda não cadastrou uma família.</p><button type="button" className="profile-link-button" onClick={onCriarFamilia}><FaPlus /> Cadastrar família</button></div>}
+            {familias.length > 0 && <button type="button" className="profile-link-button profile-add-family" onClick={onCriarFamilia}><FaPlus /> Adicionar outra família</button>}
+          </section>
         </div>
-    );
+        <FooterPanel />
+      </main>
+    </div>
+  );
 }
-
 export default Profile;

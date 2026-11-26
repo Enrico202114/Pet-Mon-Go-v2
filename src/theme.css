@@ -1,0 +1,268 @@
+/* Tema escuro compartilhado por todas as telas */
+:root[data-tema="escuro"] {
+  color-scheme: dark;
+  background: #111827;
+  color: #e5edf8;
+}
+:root[data-tema="escuro"] body,
+:root[data-tema="escuro"] #root {
+  background: #111827;
+  color: #e5edf8;
+}
+:root[data-tema="escuro"] .dashboard,
+:root[data-tema="escuro"] .dashboard-main,
+:root[data-tema="escuro"] .family-page,
+:root[data-tema="escuro"] .pets-page,
+:root[data-tema="escuro"] .settings-page,
+:root[data-tema="escuro"] .profile-page,
+:root[data-tema="escuro"] .profile-content,
+:root[data-tema="escuro"] .cadastro-pet-page,
+:root[data-tema="escuro"] .home-page {
+  background-color: #111827;
+  color: #e5edf8;
+}
+:root[data-tema="escuro"] .dashboard-main h1,
+:root[data-tema="escuro"] .dashboard-main h2,
+:root[data-tema="escuro"] .dashboard-main h3,
+:root[data-tema="escuro"] .profile-page h1,
+:root[data-tema="escuro"] .profile-page h2,
+:root[data-tema="escuro"] .settings-page h1,
+:root[data-tema="escuro"] .settings-page h2,
+:root[data-tema="escuro"] .pets-page h1,
+:root[data-tema="escuro"] .pets-page h2,
+:root[data-tema="escuro"] .family-page h1,
+:root[data-tema="escuro"] .family-page h2,
+:root[data-tema="escuro"] .cadastro-pet-page h1,
+:root[data-tema="escuro"] .home-page h2,
+:root[data-tema="escuro"] .home-page h3 {
+  color: #e5edf8;
+}
+:root[data-tema="escuro"] .dashboard-main p,
+:root[data-tema="escuro"] .profile-page p,
+:root[data-tema="escuro"] .settings-page p,
+:root[data-tema="escuro"] .pets-page p,
+:root[data-tema="escuro"] .family-page p,
+:root[data-tema="escuro"] .cadastro-pet-page p,
+:root[data-tema="escuro"] .home-page p {
+  color: #b6c3d5;
+}
+:root[data-tema="escuro"] .dashboard-summary-card,
+:root[data-tema="escuro"] .dashboard-empty-state,
+:root[data-tema="escuro"] .settings-card,
+:root[data-tema="escuro"] .settings-logout-card,
+:root[data-tema="escuro"] .family-main-card,
+:root[data-tema="escuro"] .family-members-card,
+:root[data-tema="escuro"] .family-pets-card,
+:root[data-tema="escuro"] .create-family-card,
+:root[data-tema="escuro"] .pets-empty,
+:root[data-tema="escuro"] .pet-card,
+:root[data-tema="escuro"] .profile-hero-card,
+:root[data-tema="escuro"] .profile-option-card,
+:root[data-tema="escuro"] .profile-family-banner,
+:root[data-tema="escuro"] .cadastro-pet-container,
+:root[data-tema="escuro"] .auth-card,
+:root[data-tema="escuro"] .pet-modal {
+  background-color: #1c293b;
+  color: #e5edf8;
+  border-color: #34445b;
+}
+:root[data-tema="escuro"] .family-code,
+:root[data-tema="escuro"] .settings-edit-button,
+:root[data-tema="escuro"] .pet-photo,
+:root[data-tema="escuro"] .pets-empty-icon,
+:root[data-tema="escuro"] .family-avatar,
+:root[data-tema="escuro"] .family-pet-avatar {
+  background-color: #26364b;
+  color: #a9c9ff;
+}
+:root[data-tema="escuro"] .profile-topbar,
+:root[data-tema="escuro"] .navbar,
+:root[data-tema="escuro"] .navbar-links,
+:root[data-tema="escuro"] .services-section,
+:root[data-tema="escuro"] .why-section,
+:root[data-tema="escuro"] .cta-section {
+  background-color: #172235;
+  color: #e5edf8;
+  border-color: #34445b;
+}
+:root[data-tema="escuro"] .section-title h2,
+:root[data-tema="escuro"] .services-header h2,
+:root[data-tema="escuro"] .service-content h3,
+:root[data-tema="escuro"] .why-card h3 {
+  color: #e5edf8;
+}
+:root[data-tema="escuro"] .why-card,
+:root[data-tema="escuro"] .service-card {
+  background-color: #1c293b;
+  color: #e5edf8;
+  border-color: #34445b;
+}
+:root[data-tema="escuro"] .auth-page {
+  background: #111827;
+}
+:root[data-tema="escuro"] .auth-form,
+:root[data-tema="escuro"] .input-wrapper,
+:root[data-tema="escuro"] .cadastro-pet-page input,
+:root[data-tema="escuro"] .cadastro-pet-page select {
+  background-color: #172235;
+  color: #e5edf8;
+  border-color: #44546b;
+}
+:root[data-tema="escuro"] input::placeholder {
+  color: #94a3b8;
+}
+:root[data-tema="escuro"] .settings-account-info span,
+:root[data-tema="escuro"] .settings-option span,
+:root[data-tema="escuro"] .settings-account-info strong,
+:root[data-tema="escuro"] .family-card-top h2,
+:root[data-tema="escuro"] .pet-name h2,
+:root[data-tema="escuro"] .pet-modal-details dd,
+:root[data-tema="escuro"] .profile-identity h2,
+:root[data-tema="escuro"] .hero-detail strong {
+  color: #e5edf8;
+}
+:root[data-tema="escuro"] .footer-panel {
+  color: #aab8ca;
+  border-color: #34445b;
+}
+
+:root[data-tema="escuro"] .account-sidebar,
+:root[data-tema="escuro"] .sidebar-header,
+:root[data-tema="escuro"] .sidebar-content {
+  background-color: #172235;
+  color: #e5edf8;
+}
+:root[data-tema="escuro"] .sidebar-user p,
+:root[data-tema="escuro"] .sidebar-header h2 {
+  color: #e5edf8;
+}
+:root[data-tema="escuro"] .sidebar-btn {
+  color: #e5edf8;
+  border-color: #34445b;
+}
+
+:root[data-tema="escuro"] :is(
+  .dashboard-summary-card,
+  .dashboard-empty-state,
+  .settings-card,
+  .settings-logout-card,
+  .family-main-card,
+  .family-members-card,
+  .family-pets-card,
+  .create-family-card,
+  .pets-empty,
+  .pet-card,
+  .profile-hero-card,
+  .profile-account-card,
+  .profile-shortcut-card,
+  .profile-option-card,
+  .profile-family-banner,
+  .cadastro-pet-container,
+  .auth-card
+) :is(span, strong, small, dt, dd) {
+  color: #d2deee;
+}
+
+:root[data-tema="escuro"] .profile-account-identity h2,
+:root[data-tema="escuro"] .profile-shortcut-title h2,
+:root[data-tema="escuro"] .profile-mini-table td,
+:root[data-tema="escuro"] .profile-family-row strong { color: #e5edf8; }
+:root[data-tema="escuro"] .profile-mini-table th,
+:root[data-tema="escuro"] .profile-family-row span { color: #b6c3d5; border-color: #34445b; }
+:root[data-tema="escuro"] .profile-edit-form input { background: #172235; color: #e5edf8; border-color: #44546b; }
+:root[data-tema="escuro"] .profile-family-row,
+:root[data-tema="escuro"] .profile-mini-table td,
+:root[data-tema="escuro"] .profile-mini-table th { border-color: #34445b; }
+:root[data-tema="escuro"] .profile-arrow-button { background: #26364b; color: #c4d8f5; }
+:root[data-tema="escuro"] .family-add-another { background: #1c293b; color: #e5edf8; border-color: #34445b; }
+
+:root[data-tema="escuro"] .profile-account-card,
+:root[data-tema="escuro"] .profile-shortcut-card {
+  background-color: #1c293b;
+  color: #e5edf8;
+  border-color: #34445b;
+}
+:root[data-tema="escuro"] .profile-mini-table td,
+:root[data-tema="escuro"] .profile-family-row {
+  border-color: #34445b;
+}
+:root[data-tema="escuro"] .auth-home-button {
+  background: #26364b;
+  color: #e5edf8;
+  border-color: #44546b;
+}
+
+/* A página inicial mantém a paleta clara mesmo quando as telas internas usam tema escuro. */
+:root[data-tema="escuro"] .home-page {
+  min-height: 100vh;
+  background: #ffffff;
+  color: #123b86;
+}
+:root[data-tema="escuro"] .home-page .navbar {
+  background: #ffffff;
+  color: #123b86;
+}
+:root[data-tema="escuro"] .home-page .navbar-links {
+  background: transparent;
+  color: #123b86;
+}
+:root[data-tema="escuro"] .home-page .navbar-links a,
+:root[data-tema="escuro"] .home-page .navbar-links button {
+  color: #123b86;
+}
+:root[data-tema="escuro"] .home-page .why-section {
+  background: #fff8ef;
+  color: #123b86;
+}
+:root[data-tema="escuro"] .home-page .services-section,
+:root[data-tema="escuro"] .home-page .cta-section {
+  background: #e3edff;
+  color: #123b86;
+}
+:root[data-tema="escuro"] .home-page .why-card {
+  background: transparent;
+  color: #123b86;
+}
+:root[data-tema="escuro"] .home-page .section-title h2,
+:root[data-tema="escuro"] .home-page .services-header h2,
+:root[data-tema="escuro"] .home-page .why-card h3 {
+  color: #123b86;
+}
+:root[data-tema="escuro"] .home-page .section-title p,
+:root[data-tema="escuro"] .home-page .why-card p,
+:root[data-tema="escuro"] .home-page .services-header p {
+  color: #183d79;
+}
+:root[data-tema="escuro"] .home-page .service-card {
+  background-color: transparent;
+}
+:root[data-tema="escuro"] .home-page .service-content h3,
+:root[data-tema="escuro"] .home-page .service-content p {
+  color: #ffffff;
+}
+:root[data-tema="escuro"] .home-page .account-sidebar {
+  background: #ffffff;
+  color: #173f75;
+}
+:root[data-tema="escuro"] .home-page .account-sidebar .sidebar-header,
+:root[data-tema="escuro"] .home-page .account-sidebar .sidebar-content {
+  background: #ffffff;
+  color: #173f75;
+}
+:root[data-tema="escuro"] .home-page .account-sidebar .sidebar-btn,
+:root[data-tema="escuro"] .home-page .account-sidebar .sidebar-user p,
+:root[data-tema="escuro"] .home-page .account-sidebar .sidebar-header h2 {
+  color: #173f75;
+}
+
+:root[data-tema="escuro"] .home-page .footer-panel {
+  background: #ffffff;
+  color: #71809a;
+  border-color: #e2eaf5;
+}
+:root[data-tema="escuro"] .home-page .about-section { background:#fff8ef; }
+:root[data-tema="escuro"] .home-page .about-card { background:#fff; color:#173f75; border-color:#dce7f5; }
+:root[data-tema="escuro"] .home-page .about-card h2,
+:root[data-tema="escuro"] .home-page .about-card dt { color:#123b86; }
+:root[data-tema="escuro"] .home-page .about-card p,
+:root[data-tema="escuro"] .home-page .about-card dd { color:#627c9c; }

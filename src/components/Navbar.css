@@ -17,8 +17,9 @@ body {
   justify-content: space-between;
   padding: 0 35px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  position: relative;
-  z-index: 20;
+  position: sticky;
+  top: 5px;
+  z-index: 30;
 }
 
 .navbar-logo {

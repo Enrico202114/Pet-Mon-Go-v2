@@ -2,7 +2,7 @@
 .cadastro-pet-page {
   min-height: 100vh;
   padding: 40px 20px;
-  background: #f5f5f7;
+  background: #fff8ef;
 }
 
 .cadastro-pet-container {
@@ -81,7 +81,7 @@
 .cadastro-pet-form input:focus,
 .cadastro-pet-form select:focus {
   outline: 2px solid #b8d0ff;
-  border-color: #2478d8;
+  border-color: #123b86;
 }
 
 .cadastro-pet-save {

@@ -9,9 +9,13 @@ function Navbar({
   onOpenLogin,
   onOpenRegister,
   onOpenProfile,
+  onOpenSettings,
+  onOpenAbout,
   onOpenDashboard,
+  onOpenPets,
   onOpenFamily,
   onCreateFamily,
+  familia,
   tutor,
   onLogout,
 }) {
@@ -35,17 +39,17 @@ function Navbar({
       <ul className="navbar-links">
         <li>
           <button type="button" onClick={abrirInicio}>
-            início
+            Início
           </button>
         </li>
         <li>
           <a href="#servicos">Serviços</a>
         </li>
         <li>
-          <a href="#sobre">Sobre</a>
+          <button type="button" onClick={onOpenAbout}>Sobre</button>
         </li>
         <li>
-          <a href="#contato">Contato</a>
+          <a href="#contato">Começar</a>
         </li>
       </ul>
 
@@ -64,9 +68,13 @@ function Navbar({
         onOpenLogin={onOpenLogin}
         onOpenRegister={onOpenRegister}
         onOpenProfile={onOpenProfile}
+        onOpenSettings={onOpenSettings}
+        onOpenAbout={onOpenAbout}
+        onOpenPets={onOpenPets}
         onOpenDashboard={onOpenDashboard}
         onOpenFamily={onOpenFamily}
         onCreateFamily={onCreateFamily}
+        familia={familia}
         tutor={tutor}
         onLogout={onLogout}
       />

@@ -1,6 +1,6 @@
 import "./hero.css";
 import {
-    FaPaw,
+    FaHeart,
     FaSyringe,
     FaBowlFood,
     FaDog,
@@ -40,7 +40,7 @@ function Hero({ onOpenRegister }) {
                                 className="btn-start"
                                 onClick={onOpenRegister}
                             >
-                                <FaPaw />
+                                <FaHeart />
                                 <span>Começar agora</span>
                             </button>
 

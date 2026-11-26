@@ -1,0 +1,7 @@
+.about-page { background:#fff8ef; }
+.about-container { max-width:1000px; margin:0 auto; padding:42px clamp(18px,4vw,52px); color:#173f75; }
+.about-container h1 { color:#123b86; font-size:clamp(30px,4vw,42px); }
+.about-container section { margin:24px 0; padding:24px 28px; border:1px solid #e1eaf4; border-radius:18px; background:#fff; box-shadow:0 8px 25px #1e4b7808; }
+.about-container h2 { margin-top:0; color:#123b86; }
+.about-container p,.about-container li { color:#5d7695; line-height:1.75; }
+.about-lead { font-size:19px; }

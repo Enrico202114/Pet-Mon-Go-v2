@@ -1,15 +1,28 @@
 
 import { useState } from "react";
-import { FaPaw, FaArrowLeft, FaSave } from "react-icons/fa";
+import { FaDog, FaArrowLeft, FaSave } from "react-icons/fa";
+import Sidebar from "../components/Sidebar";
+import FooterPanel from "../components/FooterPanel";
+import "./Dashboard.css";
 import "./CadastroPet.css";
 
-function CadastroPet({ onBack, onSave }) {
-  const [nome, setNome] = useState("");
-  const [especie, setEspecie] = useState("Cachorro");
-  const [raca, setRaca] = useState("");
-  const [sexo, setSexo] = useState("");
-  const [idade, setIdade] = useState("");
-  const [peso, setPeso] = useState("");
+function CadastroPet({
+  onBack,
+  onSave,
+  petInicial,
+  onHome,
+  onOpenProfile,
+  onPets,
+  onFamily,
+  onSettings,
+  onLogout,
+}) {
+  const [nome, setNome] = useState(petInicial?.nome || "");
+  const [especie, setEspecie] = useState(petInicial?.especie || "Cachorro");
+  const [raca, setRaca] = useState(petInicial?.raca || "");
+  const [sexo, setSexo] = useState(petInicial?.sexo || "");
+  const [idade, setIdade] = useState(petInicial?.idade || "");
+  const [peso, setPeso] = useState(petInicial?.peso || "");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -19,9 +32,10 @@ function CadastroPet({ onBack, onSave }) {
       return;
     }
 
+    const nomePet = nome.trim();
     const novoPet = {
-      id: Date.now(),
-      nome: nome.trim(),
+      id: petInicial?.id || Date.now(),
+      nome: nomePet.charAt(0).toLocaleUpperCase("pt-BR") + nomePet.slice(1),
       especie,
       raca: raca.trim(),
       sexo,
@@ -33,8 +47,19 @@ function CadastroPet({ onBack, onSave }) {
   }
 
   return (
-    <main className="cadastro-pet-page">
-      <section className="cadastro-pet-container">
+    <div className="dashboard">
+      <Sidebar
+        paginaAtiva="pets"
+        onHome={onHome}
+        onOpenProfile={onOpenProfile}
+        onPets={onPets}
+        onFamily={onFamily}
+        onSettings={onSettings}
+        onLogout={onLogout}
+      />
+
+      <main className="dashboard-main cadastro-pet-page">
+        <section className="cadastro-pet-container">
         <button
           type="button"
           className="cadastro-pet-back"
@@ -45,10 +70,10 @@ function CadastroPet({ onBack, onSave }) {
 
         <header className="cadastro-pet-header">
           <div className="cadastro-pet-icon">
-            <FaPaw />
+            <FaDog />
           </div>
 
-          <h1>Cadastrar pet</h1>
+          <h1>{petInicial ? "Editar pet" : "Cadastrar pet"}</h1>
           <p>Preencha as informações do seu companheiro.</p>
         </header>
 
@@ -57,7 +82,10 @@ function CadastroPet({ onBack, onSave }) {
           <input
             id="nomePet"
             value={nome}
-            onChange={(event) => setNome(event.target.value)}
+            onChange={(event) => {
+              const valor = event.target.value;
+              setNome(valor.replace(/^(\s*)(\S)/u, (_match, espacos, primeiraLetra) => espacos + primeiraLetra.toLocaleUpperCase("pt-BR")));
+            }}
             placeholder="Ex.: Thor"
             required
           />
@@ -113,8 +141,10 @@ function CadastroPet({ onBack, onSave }) {
             <FaSave /> Salvar pet
           </button>
         </form>
-      </section>
-    </main>
+        </section>
+        <FooterPanel />
+      </main>
+    </div>
   );
 }
 

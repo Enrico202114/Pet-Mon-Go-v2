@@ -2,8 +2,8 @@
 .settings-page {
     min-height: 100vh;
     padding: 0;
-    background: #f3f7fc;
-    color: #173f75;
+    background: #fff8ef;
+    color: #123b86;
     box-sizing: border-box;
     transition: background 0.25s ease, color 0.25s ease;
 }
@@ -21,7 +21,7 @@
 }
 
 .settings-eyebrow {
-    color: #f28c28;
+    color: #ff9418;
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 2px;
@@ -40,6 +40,7 @@
 }
 
 .settings-card {
+    position: relative;
     display: flex;
     align-items: flex-start;
     gap: 18px;
@@ -52,6 +53,28 @@
     box-sizing: border-box;
 }
 
+.settings-edit-button {
+    display: grid;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 0;
+    border-radius: 12px;
+    background: #e3edff;
+    color: #123b86;
+    cursor: pointer;
+}
+
+.settings-edit-button:hover {
+    background: #d6e5fc;
+}
+
+.settings-dark .settings-edit-button {
+    background: #273e5c;
+    color: #93c5fd;
+}
+
 .settings-card-icon {
     display: flex;
     align-items: center;
@@ -60,8 +83,8 @@
     width: 48px;
     height: 48px;
     border-radius: 14px;
-    background: #e9f2ff;
-    color: #2478d8;
+    background: #e3edff;
+    color: #123b86;
     font-size: 20px;
 }
 
@@ -248,6 +271,12 @@
         width: 40px;
         height: 40px;
         font-size: 17px;
+    }
+
+    .settings-edit-button {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
     }
 
     .settings-account-info {

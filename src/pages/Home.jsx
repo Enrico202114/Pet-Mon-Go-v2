@@ -1,8 +1,7 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero/hero";
-import {FaCalendarAlt, FaBell, FaClipboardList, FaHeart, FaArrowRight, FaPaw} from "react-icons/fa";
+import { FaCalendarAlt, FaBell, FaClipboardList, FaHeart, FaArrowRight } from "react-icons/fa";
 import "./Home.css";
-import vacinaImg from "../assets/vacinas.jpg";
 import alimentacaoImg from "../assets/alimentacao.jpg";
 import passeiosImg from "../assets/passeios.jpg";
 import medicacaoImg from "../assets/medicacao.jpg";
@@ -11,21 +10,30 @@ function Home({
   onOpenLogin,
   onOpenRegister,
   onOpenProfile,
+  onOpenSettings,
+  onOpenPets,
   onOpenDashboard,
+  onOpenAbout,
   tutor,
   onLogout,
   onOpenFamily,
   onCreateFamily,
-}) {  return (
+  familia,
+}) {
+  return (
     <div className="home-page">
 
       <Navbar
         onOpenLogin={onOpenLogin}
         onOpenRegister={onOpenRegister}
         onOpenProfile={onOpenProfile}
+        onOpenSettings={onOpenSettings}
+        onOpenAbout={onOpenAbout}
+        onOpenPets={onOpenPets}
         onOpenDashboard={onOpenDashboard}
         onOpenFamily={onOpenFamily}
         onCreateFamily={onCreateFamily}
+        familia={familia}
         tutor={tutor}
         onLogout={onLogout}
       />
@@ -34,7 +42,7 @@ function Home({
         onOpenRegister={onOpenRegister}
       />
 
-      <section className="why-section">
+      <section className="why-section" id="sobre">
 
         <div className="section-title">
           <span className="section-line"></span>
@@ -140,6 +148,8 @@ function Home({
             className="services-all-btn"
             type="button"
             onClick={onOpenDashboard}
+            disabled={!tutor}
+            aria-label={tutor ? "Abrir meu painel" : "Entre para acessar seu painel"}
           >
             Ver todos
 
@@ -153,35 +163,11 @@ function Home({
 
         <div className="service-cards">
 
-          <article className="service-card service-card-vaccine">
-
-             <img
-                  src={vacinaImg}
-                  alt="Cachorro recebendo vacinação"
-                  className="service-image"
-              />
-
-            <div className="service-content">
-
-              <span>01</span>
-
-              <h3>Vacinas</h3>
-
-              <p>
-                Mantenha as vacinas do seu pet
-                sempre em dia.
-              </p>
-
-            </div>
-
-          </article>
-
-
           <article className="service-card service-card-food">
 
              <img
                 src={alimentacaoImg}
-                alt="Cachorro recebendo alimentação"
+                alt="Gato se alimentando"
                 className="service-image"
             />
 
@@ -229,7 +215,7 @@ function Home({
 
              <img
                   src={medicacaoImg}
-                  alt="Cachorro recebendo medicação"
+                  alt="Gato recebendo medicação"
                   className="service-image"
               />
 
@@ -252,12 +238,12 @@ function Home({
 
       </section>
 
-      <section className="cta-section">
+      <section className="cta-section" id="contato">
 
         <div className="cta-card">
 
           <div className="cta-icon">
-            <FaPaw />
+            <FaHeart />
           </div>
 
 
@@ -280,6 +266,7 @@ function Home({
           <div className="cta-actions">
 
             <button
+              type="button"
               className="cta-primary"
               onClick={onOpenRegister}
             >

@@ -1,8 +1,8 @@
 .pets-page {
     min-height: 100vh;
     padding: 0;
-    background: #f3f7fc;
-    color: #173f75;
+    background: #fff8ef;
+    color: #123b86;
     box-sizing: border-box;
 }
 
@@ -42,7 +42,7 @@
 
 .pets-header h1 {
     margin: 0 0 8px;
-    color: #173f75;
+    color: #123b86;
     font-size: 36px;
 }
 
@@ -95,13 +95,13 @@
     text-align: center;
 }
 
-.empty-paw {
+.empty-pet-icon {
     width: 90px;
     height: 90px;
     margin-bottom: 20px;
     border-radius: 25px;
-    background: #e8f1ff;
-    color: #2478d8;
+    background: #e3edff;
+    color: #123b86;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -110,7 +110,7 @@
 
 .pets-empty h2 {
     margin: 0 0 10px;
-    color: #173f75;
+    color: #123b86;
     font-size: 25px;
 }
 
@@ -137,7 +137,6 @@
     background: #ffffff;
     border: 1px solid #e1eaf4;
     box-shadow: 0 8px 25px rgba(30, 75, 120, 0.08);
-    cursor: pointer;
     transition:
         transform 0.25s ease,
         box-shadow 0.25s ease;
@@ -154,7 +153,7 @@
     width: 100%;
     height: 220px;
     background: #e8f1ff;
-    color: #2478d8;
+    color: #123b86;
 
     display: flex;
     align-items: center;
@@ -193,6 +192,13 @@
     font-size: 13px;
 }
 
+.pet-name small {
+    display: block;
+    margin-top: 8px;
+    color: #657f98;
+    font-size: 13px;
+}
+
 .pet-name > svg {
     color: #ff9418;
     font-size: 22px;
@@ -227,8 +233,8 @@
     padding: 11px;
     border: 1px solid #dbe6f3;
     border-radius: 13px;
-    background: #f5f8fc;
-    color: #2478d8;
+    background: #e3edff;
+    color: #123b86;
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -236,9 +242,124 @@
 }
 
 .pet-view-button:hover {
-    background: #2478d8;
+    background: #123b86;
     color: #ffffff;
-    border-color: #2478d8;
+    border-color: #123b86;
+}
+
+.pet-card-actions { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+.pet-card-actions button { border:1px solid #cfdef6; border-radius:10px; background:#f3f7ff; color:#173f8a; padding:9px 13px; font-family:inherit; font-size:13px; font-weight:600; cursor:pointer; transition:background .18s, transform .18s, border-color .18s; }
+.pet-card-actions button:hover { background:#e5eeff; border-color:#9eb8e9; transform:translateY(-1px); }
+.pet-card-actions button:last-child { background:#fff5e9; color:#a65a00; border-color:#ffddb3; }
+.pet-card-actions button:last-child:hover { background:#ffecd4; }
+.feeding-routine-modal { display:flex; flex-direction:column; gap:12px; }
+.feeding-routine-modal label { display:flex; flex-direction:column; gap:6px; color:#456080; font-size:14px; font-weight:600; }
+.feeding-routine-modal input { width:100%; box-sizing:border-box; border:1px solid #cfdef6; border-radius:10px; padding:11px 12px; color:#173f75; font:inherit; }
+
+.pet-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 30;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgb(11 36 80 / 55%);
+}
+
+.pet-modal {
+    position: relative;
+    width: min(100%, 500px);
+    padding: 34px;
+    border: 1px solid #e1eaf4;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 24px 70px rgb(18 59 134 / 24%);
+}
+
+.pet-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    border: 0;
+    border-radius: 50%;
+    background: #e3edff;
+    color: #123b86;
+    font-size: 25px;
+}
+
+.pet-modal-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-right: 28px;
+}
+
+.pet-modal-avatar {
+    display: grid;
+    place-items: center;
+    flex: 0 0 76px;
+    width: 76px;
+    height: 76px;
+    overflow: hidden;
+    border-radius: 22px;
+    background: #e3edff;
+    color: #123b86;
+    font-size: 32px;
+}
+
+.pet-modal-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pet-modal-heading h2 {
+    margin: 3px 0 5px;
+    color: #123b86;
+}
+
+.pet-modal-heading p {
+    margin: 0;
+    color: #718096;
+}
+
+.pet-modal-details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin: 28px 0;
+}
+
+.pet-modal-details div {
+    min-width: 0;
+    padding: 14px;
+    border-radius: 14px;
+    background: #fff8ef;
+}
+
+.pet-modal-details dt {
+    color: #718096;
+    font-size: 12px;
+}
+
+.pet-modal-details dd {
+    margin: 5px 0 0;
+    color: #123b86;
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.pet-modal-done {
+    width: 100%;
+    min-height: 48px;
+    border: 0;
+    border-radius: 25px;
+    background: #ff9418;
+    color: #fff;
+    font-weight: 700;
 }
 
 /* RESPONSIVO */
@@ -274,4 +395,14 @@
         grid-template-columns: 1fr;
     }
 
+}
+
+@media (max-width: 480px) {
+    .pet-modal {
+        padding: 28px 20px 20px;
+    }
+
+    .pet-modal-details {
+        grid-template-columns: 1fr;
+    }
 }
